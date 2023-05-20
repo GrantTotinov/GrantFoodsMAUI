@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:viemodel="clr-namespace:GrantFoods.ViewModels"
+             xmlns:helpers="clr-namespace:GrantFoods.Helpers"
+             x:Class="GrantFoods.Views.HomeView"
+             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+             Title="HomeView"
+             Shell.NavBarIsVisible="False">
+
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="Orange" Offset="0.0" />
+            <GradientStop Color="red" Offset="1.0"/>
+        </LinearGradientBrush>
+    </ContentPage.Background>
+    <!-- Main grid -->
+    <Grid RowDefinitions=".15*,.2*,.25*,.40*"
+          Margin="10,20,10,0"
+          IgnoreSafeArea="{OnPlatform Android=False, iOS=True}">
+        
+        <!-- Top grid -->
+        <Grid ColumnDefinitions="*,*"
+              RowDefinitions="*,*">
+              
+            <VerticalStackLayout VerticalOptions="Center"
+                                 Grid.Column="0">
+                <!-- 2 lines -->
+                <Rectangle Fill="AliceBlue"
+                           HeightRequest="2"
+                           HorizontalOptions="Start"
+                           WidthRequest="25"/>
+
+                <Rectangle Fill="AliceBlue"
+                           HeightRequest="2"
+                           HorizontalOptions="Start"
+                           WidthRequest="35"
+                           Margin="0,5,0,0"/>
+
+                <!-- Picker -->
+                <Picker 
+                        Title="Search Options"
+                        TitleColor="AliceBlue"
+                        FontFamily="NexaHeavy"
+                        TextColor="white">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Top Rated</x:String>
+                            <x:String>Nearby You</x:String>
+
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+            </VerticalStackLayout>
+            <!-- SerachBar -->
+            <Border Grid.ColumnSpan="2"
+                    Grid.Row="1"
+                    Padding="0,10,0,0"
+                    StrokeShape="RoundRectangle 80,80,80,80">
+                <SearchBar Placeholder="Search Food"
+                           BackgroundColor="white"
+                           TextColor="DarkOrange"
+                           FontAttributes="Bold">
+
+                </SearchBar>
+            </Border>
+
+            <Label Grid.Column="1"
+                   Grid.Row="0"
+                   Text="Welcome"
+                   HorizontalOptions="End" 
+                   VerticalOptions="Start"
+                   FontSize="Medium"
+                   FontFamily="NexaHeavy"
+                   TextColor="AliceBlue"/>
+
+            <Label Text="{Binding UserName}"
+                   Grid.Column="1"
+                   Grid.Row="0"
+                   HorizontalOptions="End"
+                   VerticalOptions="End"
+                   Padding="0,0,42,15"
+                   FontAttributes="Bold"
+                   TextColor="AliceBlue"/>
+
+
+        </Grid>
+
+
+        <!-- Categories  -->
+        <CollectionView Grid.Row="1"
+                        x:Name="Categories"
+                        ItemsSource="{Binding Categories}"
+                        Margin="0,20"
+                        HeightRequest="125"
+                        VerticalOptions="FillAndExpand"
+                        HorizontalScrollBarVisibility="Never"
+                        ItemsLayout="HorizontalList"
+                        SelectionChanged="Categories_SelectionChanged">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="0,10,10,0"
+                          RowDefinitions="Auto,Auto">
+                        <Border HeightRequest="75"
+                                WidthRequest="75"
+                                StrokeShape="RoundRectangle 25,25,25,25"
+                                StrokeThickness="0"
+                                Grid.Row="0"
+                                BackgroundColor="#806E51FE">
+
+                            <Image Source="{Binding CategoryImg}"/>
+
+                        </Border>
+                        <Label Text="{Binding CategoryName}"
+                               HorizontalTextAlignment="Center"
+                               Grid.Row="1"
+                               FontFamily="Bebas"
+                               FontSize="Large"
+                               TextColor="White"/>
+                    </Grid>
+
+                </DataTemplate>
+
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+        <!-- Restaurants  -->
+        <CarouselView  Grid.Row="2"
+                       ItemsSource="{Binding TopRatedRestaurants}"
+                       x:Name="cvRestaurants"
+                       >
+            
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
+
+                    <Grid>
+                        <Border StrokeShape="RoundRectangle 25,25,25,25">
+                            <Image Source="{Binding RestaurantImg}"/>
+                        </Border>
+
+                        <Border HeightRequest="50"
+                                VerticalOptions="End"
+                                BackgroundColor="LightBlue"
+                                Padding="10,0,10,0"
+                                Opacity=".8"
+                                StrokeShape="RoundRectangle 0,0,25,25">
+                            <Grid>
+                                <Label Text="{Binding RestaurantName}"
+                                   TextColor="red"
+                                   VerticalOptions="CenterAndExpand"
+                                   HorizontalOptions="Center"
+                                   FontSize="Title"
+                                   FontFamily="Bebas"
+                                       />
+
+                                <Label Text="{Binding RestaurrantRating}"
+                                       HorizontalOptions="End"
+                                       VerticalOptions="Center"
+                                       FontFamily="Bebas"
+                                       FontSize="Title" />
+
+                                
+                            </Grid>
+                        </Border>
+                    </Grid>
+
+                </DataTemplate>
+
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+
+        
+        <!-- Products  -->
+        <Border Grid.Row="3"
+                StrokeShape="RoundRectangle 25,25,0,0"
+                BackgroundColor="#803F9BF2">
+        <CollectionView x:Name="Products"
+                        Grid.Row="3"
+                        ItemsSource="{Binding TopRatedItems}"
+                        Margin="10,10,10,10"
+                        VerticalOptions="FillAndExpand"
+                        HorizontalScrollBarVisibility="Never"
+                        ItemsLayout="VerticalList"
+                        SelectionChanged="Products_SelectionChanged">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                        <Border Padding="5"
+                                Margin="0,10,0,10"
+                                StrokeShape="RoundRectangle 25,25,25,25"
+                                BackgroundColor="Black">
+                            <Grid RowDefinitions="Auto,Auto,Auto"
+                          ColumnDefinitions="Auto,Auto">
+                        
+                                <Border HeightRequest="150"
+                                WidthRequest="200"
+                                StrokeShape="RoundRectangle 25,25,25,25"
+                                HorizontalOptions="Start"
+                                Grid.Row="0"
+                                BackgroundColor="Transparent"
+                                        Grid.RowSpan="3">
+
+                                    <Image Source="{Binding ProductImg}"
+                                   Aspect="AspectFill"/>
+                                </Border>
+
+                                <Label Text="{Binding ProductName}"
+                                       Grid.Column="1"
+                                       FontFamily="Bebas"
+                                       TextColor="#F55910"
+                                       FontSize="Title"
+                                       HorizontalTextAlignment="Center" 
+                                       LineBreakMode="WordWrap" 
+                                       WidthRequest="130"
+                                       />
+
+                                <Image Source="rating.png"
+                                       HeightRequest="20"
+                                       WidthRequest="20"
+                                       Grid.Row="1"
+                                       Grid.Column="2"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Start"
+                                       Margin="20,0,0,40"
+                                       />
+                                
+                                <Label Text="4.2"
+                                       Grid.Row="1"
+                                       Grid.Column="2"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Start"
+                                       Margin="45,4,0,40"
+                                       TextColor="#FFBE01"
+                                       FontSize="Large"
+                                       FontFamily="Bebas"
+                                       />
+
+                                <Image Source="deliverytime.png"
+                                       HeightRequest="20"
+                                       WidthRequest="20"
+                                       Grid.Row="2"
+                                       Grid.Column="2"
+                                       VerticalOptions="Start"
+                                       HorizontalOptions="Start"
+                                       Margin="20,-30,0,0"
+                                       />
+
+                                <Label Text="{Binding ProductDeliveryTime, StringFormat='{}{0} min'}"
+                                       Grid.Row="2"
+                                       Grid.Column="2"
+                                       VerticalOptions="Start"
+                                       HorizontalOptions="Start"
+                                       Margin="45,-32,0,0"
+                                       TextColor="#FFBE01"
+                                       FontSize="Large"
+                                       FontFamily="Bebas"
+                                       />
+
+
+                                <Label Text="{Binding ProductPrice, StringFormat='{0:c}'}"
+                                       Grid.Column="2"
+                                       Grid.Row="2"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="End"
+                                       FontFamily="Bebas"
+                                       FontSize="Title"
+                                       TextColor="#FFBE01"
+                                       
+                                       />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        </Border>
+        
+    </Grid>
+</ContentPage>

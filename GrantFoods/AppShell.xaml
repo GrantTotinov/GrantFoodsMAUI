@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="GrantFoods.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:view="clr-namespace:GrantFoods.Views"
+    Shell.FlyoutBehavior="Disabled"
+    x:Name="MyAppShell">
+
+
+    <ShellContent x:Name="MyLandingPage"
+        ContentTemplate="{DataTemplate view:LandingView}"
+        Route="LandingView" />
+
+    <ShellContent
+        ContentTemplate="{DataTemplate view:LoginView}"
+        Route="LoginView" />
+
+    <TabBar Route="TabBar">
+        <Tab Icon="offers.png">
+            <ShellContent ContentTemplate="{DataTemplate view:OffersView}"
+                          Route="OffersView"/>
+        </Tab>
+        
+        <Tab Icon="favourites.png">
+            <ShellContent ContentTemplate="{DataTemplate view:FavouritesView}"
+                          Route="FavouritesView"/>
+        </Tab>
+        
+        <Tab Icon="home.png"
+             x:Name="MyHomePage">
+            <ShellContent ContentTemplate="{DataTemplate view:HomeView}"
+                          Route="HomeView"/>
+        </Tab>
+        
+        <Tab Icon="cart.png">
+            <ShellContent ContentTemplate="{DataTemplate view:CartView}"
+                          Route="CartView"/>
+        </Tab>
+        
+        <Tab  Icon="account.png">
+            <ShellContent ContentTemplate="{DataTemplate view:AccountView}"
+                          Route="AccountView"/>
+        </Tab>
+    </TabBar>
+
+    <ShellContent
+        ContentTemplate="{DataTemplate view:CategoryView}"
+        Route="CategoryVie" />
+
+    <ShellContent
+        ContentTemplate="{DataTemplate view:RestaurantView}"
+        Route="RestaurantView" />
+
+    
+
+</Shell>

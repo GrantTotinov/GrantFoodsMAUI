@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GrantFoods.Views.RegisterView"
+             xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:viewmodel="clr-namespace:GrantFoods.ViewModels"
+             Shell.NavBarIsVisible="False"
+             x:DataType="viewmodel:UserViewModel">
+    
+    <VerticalStackLayout Spacing="25"
+                         Padding="30,0"
+                         VerticalOptions="Center">
+
+        <skia:SKLottieView Source="registrationanimation.json"
+                           HeightRequest="250"
+                           RepeatCount="-1"/>
+
+
+
+        <StackLayout Orientation="Horizontal">
+
+            <Frame HasShadow="True" 
+                   HeightRequest="56"
+                   WidthRequest="56"
+                   CornerRadius="20"
+                   BorderColor="White"
+                   ZIndex="1">
+
+                <Image Source="loginuser.png"
+                       HeightRequest="40"
+                       WidthRequest="40"/>
+            </Frame>
+
+            <Frame HorizontalOptions="FillAndExpand"
+                   Padding="0"
+                   HasShadow="True"
+                   BorderColor="White"
+                   HeightRequest="45"
+                   Margin="-20,0,0,0">
+
+                <Entry Placeholder="Username"
+                       Text="{Binding UserName}"
+                       VerticalOptions="Center"
+                       Margin="20,0,0,0">
+                    <Entry.Behaviors>
+                        <toolkit:TextValidationBehavior
+                            Flags="ValidateOnValueChanged,ValidateOnAttaching"
+                            IsValid="{Binding IsUsernameValid}"/>
+                    </Entry.Behaviors>
+                </Entry>
+            </Frame>
+
+        </StackLayout>
+
+        <Label Text="Username must have at least 6 characters!"
+                   IsVisible="{Binding IsUsernameValid, Converter={StaticResource invertBoolConverter}}"/>
+
+        <StackLayout Orientation="Horizontal">
+
+            <Frame HasShadow="True" 
+                   HeightRequest="56"
+                   WidthRequest="56"
+                   CornerRadius="20"
+                   BorderColor="White"
+                   ZIndex="1">
+
+                <Image Source="loginpassword.png"
+                       HeightRequest="40"
+                       WidthRequest="40"/>
+            </Frame>
+
+            <Frame HorizontalOptions="FillAndExpand"
+                   Padding="0"
+                   HasShadow="True"
+                   BorderColor="White"
+                   HeightRequest="45"
+                   Margin="-20,0,0,0">
+
+                <Entry Placeholder="Password"
+                       Text="{Binding UserPassword}"
+                       IsPassword="True"
+                       VerticalOptions="Center"
+                       Margin="20,0,0,0">
+
+                    <Entry.Behaviors>
+                        <toolkit:TextValidationBehavior
+                            Flags="ValidateOnValueChanged,ValidateOnAttaching"
+                            IsValid="{Binding IsPasswordValid}"/>
+                    </Entry.Behaviors>
+                </Entry>
+            </Frame>
+
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+
+            <Frame HasShadow="True" 
+                   HeightRequest="56"
+                   WidthRequest="56"
+                   CornerRadius="20"
+                   BorderColor="White"
+                   ZIndex="1">
+
+                <Image Source="loginemail.png"
+                       HeightRequest="40"
+                       WidthRequest="40"/>
+            </Frame>
+
+            <Frame HorizontalOptions="FillAndExpand"
+                   Padding="0"
+                   HasShadow="True"
+                   BorderColor="White"
+                   HeightRequest="45"
+                   Margin="-20,0,0,0">
+
+                <Entry Placeholder="Email"
+                       Text="{Binding UserEmail}"
+                       VerticalOptions="Center"
+                       Margin="20,0,0,0">
+
+                    <Entry.Behaviors>
+                        <toolkit:TextValidationBehavior
+                            Flags="ValidateOnValueChanged,ValidateOnAttaching"
+                            IsValid="{Binding IsEmailValid}"/>
+                    </Entry.Behaviors>
+                </Entry>
+            </Frame>
+
+        </StackLayout>
+
+        <Label Text="Password must have at least 6 characters!"
+                   IsVisible="{Binding IsPasswordValid, Converter={StaticResource invertBoolConverter}}"/>
+        <Button
+            Text="Sign In"
+            Command="{Binding RegisterCommand}"/>
+    </VerticalStackLayout>
+</ContentPage>
