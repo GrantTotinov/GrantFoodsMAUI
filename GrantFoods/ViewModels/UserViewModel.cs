@@ -2,7 +2,7 @@
 {
     public partial class UserViewModel : BaseViewModel
     {
-        UserService userService;
+        readonly UserService userService;
 
         [ObservableProperty]
         string userName;

@@ -17,7 +17,7 @@ namespace GrantFoods.Helpers
                     RestaurantName = "McDonald's",
                     RestaurantImg = "mcdonaldslogo",
                     RestaurrantRating = 4.2m,
-                    RestaurantDescription = "If you looking for place for fast and tasty easting this is for you",
+                    RestaurantDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed arcu tempus, tincidunt neque id, elementum felis. Integer pharetra tellus nisl, at condimentum quam fringilla ut. Quisque et nulla gravida, auctor ipsum ut, auctor libero.",
                     RestaurantLocation = ""
                 },
                 new Restaurant
@@ -27,7 +27,7 @@ namespace GrantFoods.Helpers
                     RestaurantName = "BurgerKing",
                     RestaurantImg = "burgerkinglogo",
                     RestaurrantRating = 4.1m,
-                    RestaurantDescription = "If you looking for place for fast and tasty easting this is for you",
+                    RestaurantDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed arcu tempus, tincidunt neque id, elementum felis. Integer pharetra tellus nisl, at condimentum quam fringilla ut. Quisque et nulla gravida, auctor ipsum ut, auctor libero.",
                     RestaurantLocation = ""
                 },
                 new Restaurant
@@ -37,7 +37,7 @@ namespace GrantFoods.Helpers
                     RestaurantName = "Verdi",
                     RestaurantImg = "verdilogo",
                     RestaurrantRating = 4.4m,
-                    RestaurantDescription = "If you looking for place for fast and tasty easting this is for you",
+                    RestaurantDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed arcu tempus, tincidunt neque id, elementum felis. Integer pharetra tellus nisl, at condimentum quam fringilla ut. Quisque et nulla gravida, auctor ipsum ut, auctor libero.",
                     RestaurantLocation = ""
                 },
                 new Restaurant
@@ -47,7 +47,7 @@ namespace GrantFoods.Helpers
                     RestaurantName = "PizzaHub",
                     RestaurantImg = "pizzahublogo",
                     RestaurrantRating = 3.9m,
-                    RestaurantDescription = "If you looking for place for fast and tasty easting this is for you",
+                    RestaurantDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed arcu tempus, tincidunt neque id, elementum felis. Integer pharetra tellus nisl, at condimentum quam fringilla ut. Quisque et nulla gravida, auctor ipsum ut, auctor libero.",
                     RestaurantLocation = ""
                 },
                 new Restaurant
@@ -57,7 +57,7 @@ namespace GrantFoods.Helpers
                     RestaurantName = "Nikko",
                     RestaurantImg = "nikkologo",
                     RestaurrantRating = 4.6m,
-                    RestaurantDescription = "If you looking for place for fast and tasty easting this is for you",
+                    RestaurantDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed arcu tempus, tincidunt neque id, elementum felis. Integer pharetra tellus nisl, at condimentum quam fringilla ut. Quisque et nulla gravida, auctor ipsum ut, auctor libero.",
                     RestaurantLocation = ""
                 },
                 new Restaurant
@@ -67,7 +67,7 @@ namespace GrantFoods.Helpers
                     RestaurantName = "Sunday",
                     RestaurantImg = "sundaylogo",
                     RestaurrantRating = 4.2m,
-                    RestaurantDescription = "If you looking for place for fast and tasty easting this is for you",
+                    RestaurantDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed arcu tempus, tincidunt neque id, elementum felis. Integer pharetra tellus nisl, at condimentum quam fringilla ut. Quisque et nulla gravida, auctor ipsum ut, auctor libero.",
                     RestaurantLocation = ""
                 },
                 new Restaurant
@@ -77,7 +77,7 @@ namespace GrantFoods.Helpers
                     RestaurantName = "Toro Grande",
                     RestaurantImg = "torograndelogo",
                     RestaurrantRating = 4.4m,
-                    RestaurantDescription = "If you looking for place for fast and tasty easting this is for you",
+                    RestaurantDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed arcu tempus, tincidunt neque id, elementum felis. Integer pharetra tellus nisl, at condimentum quam fringilla ut. Quisque et nulla gravida, auctor ipsum ut, auctor libero.",
                     RestaurantLocation = ""
                 },
                 new Restaurant
@@ -87,7 +87,7 @@ namespace GrantFoods.Helpers
                     RestaurantName = "Happy Grill & Bar",
                     RestaurantImg = "happylogo",
                     RestaurrantRating = 4m,
-                    RestaurantDescription = "If you looking for place for fast and tasty easting this is for you",
+                    RestaurantDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed arcu tempus, tincidunt neque id, elementum felis. Integer pharetra tellus nisl, at condimentum quam fringilla ut. Quisque et nulla gravida, auctor ipsum ut, auctor libero.",
                     RestaurantLocation = ""
                 },
                 new Restaurant
@@ -97,7 +97,7 @@ namespace GrantFoods.Helpers
                     RestaurantName = "Sombrero",
                     RestaurantImg = "sombrerologo",
                     RestaurrantRating = 4.1m,
-                    RestaurantDescription = "If you looking for place for fast and tasty easting this is for you",
+                    RestaurantDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed arcu tempus, tincidunt neque id, elementum felis. Integer pharetra tellus nisl, at condimentum quam fringilla ut. Quisque et nulla gravida, auctor ipsum ut, auctor libero.",
                     RestaurantLocation = ""
                 },
                 new Restaurant
@@ -107,7 +107,7 @@ namespace GrantFoods.Helpers
                     RestaurantName = "Tacobell",
                     RestaurantImg = "tacobelllogo",
                     RestaurrantRating = 3.9m,
-                    RestaurantDescription = "If you looking for place for fast and tasty easting this is for you",
+                    RestaurantDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed arcu tempus, tincidunt neque id, elementum felis. Integer pharetra tellus nisl, at condimentum quam fringilla ut. Quisque et nulla gravida, auctor ipsum ut, auctor libero.",
                     RestaurantLocation = ""
                 },
             };

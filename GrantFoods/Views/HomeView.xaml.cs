@@ -1,4 +1,6 @@
 
+using System.Collections;
+
 namespace GrantFoods.Views;
 
 public partial class HomeView : ContentPage
@@ -45,21 +47,13 @@ public partial class HomeView : ContentPage
         };
     }
 
-    private void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
-    {
+    
 
+    private  void Products_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+       
     }
 
-    private async void Products_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        var category = e.CurrentSelection.FirstOrDefault() as Category;
-        if (category == null)
-            return;
-        //await Shell.Current.GoToAsync(new CategoryView(category));
-    }
+    
 
-    private void Categories_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-
-    }
 }

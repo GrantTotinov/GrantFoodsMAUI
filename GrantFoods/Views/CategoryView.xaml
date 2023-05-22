@@ -1,12 +1,27 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:helpers="clr-namespace:GrantFoods.Helpers"
+             xmlns:viewmodel="clr-namespace:GrantFoods.ViewModels"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="GrantFoods.Views.CategoryView"
-             Title="CategoryView">
-    <VerticalStackLayout>
-        <Label 
-            Text="CategoryView"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="CategoryView"
+             x:DataType="viewmodel:CategoryViewModel">
+    
+                    <VerticalStackLayout>
+                        <Image Source="{Binding SelectedCategory.CategoryImg}"
+                                                       HeightRequest="100"
+                                                       WidthRequest="95"
+                                                       Aspect="AspectFill"/>
+
+                        <Label Grid.Row="0"
+                                                       Grid.Column="1"
+                                                       Grid.ColumnSpan="2"
+                                                       Text="{Binding SelectedCategory.CategoryName}"
+                                                       FontSize="15"
+                                                       FontAttributes="Bold"/>
+
+                        
+                    </VerticalStackLayout>  
+               
 </ContentPage>

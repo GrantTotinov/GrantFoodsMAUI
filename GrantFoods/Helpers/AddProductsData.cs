@@ -590,7 +590,8 @@ namespace GrantFoods.Helpers
                         ProductImg=product.ProductImg,
                         ProductPrice=product.ProductPrice,
                         ProductDescritpion = product.ProductDescritpion,
-                        ProductDeliveryTime=product.ProductDeliveryTime
+                        ProductDeliveryTime=product.ProductDeliveryTime,
+                        ProductRating=product.ProductRating
                     });
                 }
             }

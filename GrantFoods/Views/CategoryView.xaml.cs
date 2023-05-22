@@ -2,8 +2,12 @@ namespace GrantFoods.Views;
 
 public partial class CategoryView : ContentPage
 {
-	public CategoryView()
+    CategoryViewModel categoryViewModel;
+    
+    public CategoryView(CategoryViewModel categoryViewModel)
 	{
 		InitializeComponent();
-	}
+        
+        BindingContext = categoryViewModel;
+    }
 }

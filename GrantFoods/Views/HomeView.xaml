@@ -4,6 +4,7 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:viemodel="clr-namespace:GrantFoods.ViewModels"
              xmlns:helpers="clr-namespace:GrantFoods.Helpers"
+             xmlns:models="clr-namespace:GrantFoods.Models"
              x:Class="GrantFoods.Views.HomeView"
              xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
              Title="HomeView"
@@ -96,11 +97,10 @@
                         HeightRequest="125"
                         VerticalOptions="FillAndExpand"
                         HorizontalScrollBarVisibility="Never"
-                        ItemsLayout="HorizontalList"
-                        SelectionChanged="Categories_SelectionChanged">
+                        ItemsLayout="HorizontalList">
 
             <CollectionView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="models:Category">
                     <Grid Padding="0,10,10,0"
                           RowDefinitions="Auto,Auto">
                         <Border HeightRequest="75"
@@ -109,6 +109,12 @@
                                 StrokeThickness="0"
                                 Grid.Row="0"
                                 BackgroundColor="#806E51FE">
+                            
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viemodel:HomeViewModel}}, Path=GotoCategoryCommand}"
+                                                CommandParameter="{Binding .}"/>
+                            </Border.GestureRecognizers> 
 
                             <Image Source="{Binding CategoryImg}"/>
 

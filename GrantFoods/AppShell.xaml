@@ -44,11 +44,11 @@
         </Tab>
     </TabBar>
 
-    <ShellContent
+    <ShellContent x:Name="MyCategoryPage"
         ContentTemplate="{DataTemplate view:CategoryView}"
-        Route="CategoryVie" />
+        Route="CategoryView" />
 
-    <ShellContent
+    <ShellContent  x:Name="MyRestaurantPage"
         ContentTemplate="{DataTemplate view:RestaurantView}"
         Route="RestaurantView" />
 

@@ -8,6 +8,7 @@ global using Android.Content;
 global using Microsoft.Maui.Controls.Platform;
 global using System.Timers;
 global using Timer = System.Timers.Timer;
+global using System.Linq;
 
 //Nuget Usings
 global using SkiaSharp.Views.Maui.Controls.Hosting;
@@ -58,31 +59,34 @@ public static class MauiProgram
 #if DEBUG
 		builder.Logging.AddDebug();
 #endif
-
+        //Services
 		builder.Services.AddSingleton<LandingPageService>();
-        builder.Services.AddSingleton<LandingViewModel>();
-        builder.Services.AddSingleton<LandingView>();
-
-		builder.Services.AddSingleton<UserService>();
-		builder.Services.AddTransient<UserViewModel>();
-        builder.Services.AddTransient<LoginView>();
-        builder.Services.AddTransient<RegisterView>();
-
-		builder.Services.AddSingleton<CartItemService>();
+        builder.Services.AddSingleton<CartItemService>();
         builder.Services.AddSingleton<CategoryDataService>();
         builder.Services.AddSingleton<ProductDataService>();
-        builder.Services.AddTransient<HomeView>();
+        builder.Services.AddSingleton<UserService>();
+        builder.Services.AddSingleton<RestaurantDataService>();
+
+        //ViewModels
+        builder.Services.AddTransient<LandingViewModel>();
+        builder.Services.AddTransient<UserViewModel>();
         builder.Services.AddTransient<HomeViewModel>();
+        builder.Services.AddTransient<CategoryViewModel>();
 
+        
+
+        //Views
+        builder.Services.AddTransient<LoginView>();
+        builder.Services.AddTransient<RegisterView>();
+        builder.Services.AddTransient<HomeView>();
         builder.Services.AddTransient<OffersView>();
-
         builder.Services.AddTransient<FavouritesView>();
-
         builder.Services.AddTransient<CartView>();
-
         builder.Services.AddTransient<AccountView>();
-
-
+        builder.Services.AddTransient<LandingView>();
+        builder.Services.AddTransient<CategoryView>();
+        builder.Services.AddTransient<ProductView>();
+        builder.Services.AddTransient<RestaurantView>();
 
 
 

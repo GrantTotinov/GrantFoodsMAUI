@@ -1,10 +1,13 @@
-﻿namespace GrantFoods.ViewModels
+﻿
+
+namespace GrantFoods.ViewModels
 {
     public partial class HomeViewModel : BaseViewModel
     {
-        CartItemService cartItemService;
-        CategoryDataService categoryDataService;
-        ProductDataService productDataService;
+        readonly CartItemService cartItemService;
+        readonly CategoryDataService categoryDataService;
+        readonly ProductDataService productDataService;
+        readonly RestaurantDataService restaurantDataService;
 
         [ObservableProperty]
         string userName;
@@ -12,16 +15,18 @@
         [ObservableProperty]
         int userCartItemCount;
 
+
         public ObservableCollection<Category> Categories { get; set; }
         public ObservableCollection<Product> TopRatedItems { get; set; }
         public ObservableCollection<Restaurant> TopRatedRestaurants { get; set; }
         public ObservableCollection<Product> Offers { get; set; }
 
-        public HomeViewModel(CartItemService _cartItemService, CategoryDataService _categoryDataService, ProductDataService _productDataService)
+        public HomeViewModel(CartItemService _cartItemService, CategoryDataService _categoryDataService, ProductDataService _productDataService, RestaurantDataService _restaurantDataService)
         {
             cartItemService = _cartItemService;
             categoryDataService = _categoryDataService;
             productDataService = _productDataService;
+            restaurantDataService = _restaurantDataService;
 
             var username = Preferences.Get("Username", String.Empty);
             if (String.IsNullOrEmpty(username))
@@ -29,8 +34,9 @@
             else
                 UserName = username;
 
-            UserCartItemCount = new CartItemService().GetUserCartCount();
             
+            UserCartItemCount = cartItemService.GetUserCartCount();
+
             Categories = new ObservableCollection<Category>();
             TopRatedItems = new ObservableCollection<Product>();
             TopRatedRestaurants = new ObservableCollection<Restaurant>();
@@ -44,7 +50,7 @@
 
         private async void GetOffers()
         {
-            var data = await new ProductDataService().GetProductsbyPriceDec();
+            var data = await productDataService.GetProductsbyPriceDec();
             Offers.Clear();
             foreach(var product in data)
             {
@@ -62,7 +68,7 @@
 
         private async void GetCategories()
         {
-            var data = await new CategoryDataService().GetCategoriesAsync();
+            var data = await categoryDataService.GetCategoriesAsync();
             Categories.Clear();
             foreach (var category in data)
             {
@@ -72,7 +78,7 @@
 
         private async void GetTopRatedItems()
         {
-            var data = await new ProductDataService().GetProductsAsync();
+            var data = await productDataService.GetProductsAsync();
             TopRatedItems.Clear();
             foreach(var product in data)
             {
@@ -82,12 +88,24 @@
 
         private async void GetTopRatedRestaurants()
         {
-            var data = await new RestaurantDataService().GetRestaurantsAsync();
+            var data = await restaurantDataService.GetRestaurantsAsync();
             TopRatedRestaurants.Clear();
             foreach(var restaurant in data)
             {
                 TopRatedRestaurants.Add(restaurant);
             }
+        }
+
+        //testova komanda za vlizane v categorii
+        [RelayCommand]
+        async Task GotoCategory(Category category)
+        {
+            if (category == null)
+                return;
+            await Shell.Current.GoToAsync(nameof(CategoryView), true, new Dictionary<string, object>
+        {
+            {"category", category }
+        });
         }
     }
 }
