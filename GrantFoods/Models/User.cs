@@ -1,6 +1,6 @@
 ﻿namespace GrantFoods.Models
 {
-    public partial class User : ObservableObject
+    public partial class User 
     {
         public string UserId { get; set; }
         public string UserName { get; set; }

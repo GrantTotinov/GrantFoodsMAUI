@@ -2,7 +2,7 @@
 
 namespace GrantFoods.Models
 {
-    public partial class Product 
+    public class Product 
     {
         public int ProductId { get; set; }
         public string ProductName { get; set; }

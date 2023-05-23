@@ -1,39 +1,47 @@
 ﻿namespace GrantFoods.ViewModels
 {
     [QueryProperty(nameof(SelectedCategory), "category")]
+    
+
+
     public partial class CategoryViewModel: BaseViewModel
     {
         [ObservableProperty]
         Category selectedCategory;
 
+       
+
         [ObservableProperty]
         int totalProducts;
-        
+
+
         readonly ProductDataService productDataService;
-        public ObservableCollection<Product> ProductsByCategory { get; set; }
+        
+        public ObservableCollection<Product> ProductsByCategory { get; set; } = new();
+        public async void GetProducts(int categoryid)
+        {
+            var data = await productDataService.GetProductsByCategoriesAsync(categoryid);
+            ProductsByCategory.Clear();
+            foreach (var product in data)
+            {
+                ProductsByCategory.Add(product);
+            }
+
+        }
 
         public CategoryViewModel(ProductDataService _productDataService)
         {
             productDataService = _productDataService;
-        }
-        public CategoryViewModel(Category category)
-        {
-            category = SelectedCategory;
-            GetProducts(category.CategoryId);
-            ProductsByCategory = new ObservableCollection<Product>();
-        }
-        
-
-        private async void GetProducts(int categoryId)
-        {
-            var data = await productDataService.GetProductsByCategoriesAsync(categoryId);
-            ProductsByCategory.Clear();
-            foreach(var item in data)
+            if (SelectedCategory != null)
             {
-                ProductsByCategory.Add(item);
+                
+                GetProducts(SelectedCategory.CategoryId);
             }
-            TotalProducts=ProductsByCategory.Count;
+            else Shell.Current.DisplayAlert("Error", "ok", "cancel");
         }
+
+        
+        
     }
 
 }

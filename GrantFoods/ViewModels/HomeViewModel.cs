@@ -16,10 +16,10 @@ namespace GrantFoods.ViewModels
         int userCartItemCount;
 
 
-        public ObservableCollection<Category> Categories { get; set; }
-        public ObservableCollection<Product> TopRatedItems { get; set; }
-        public ObservableCollection<Restaurant> TopRatedRestaurants { get; set; }
-        public ObservableCollection<Product> Offers { get; set; }
+        public ObservableCollection<Category> Categories { get; set; } = new();
+        public ObservableCollection<Product> TopRatedItems { get; set; } = new();
+        public ObservableCollection<Restaurant> TopRatedRestaurants { get; set; } = new();
+        public ObservableCollection<Product> Offers { get; set; } = new();
 
         public HomeViewModel(CartItemService _cartItemService, CategoryDataService _categoryDataService, ProductDataService _productDataService, RestaurantDataService _restaurantDataService)
         {
@@ -36,11 +36,6 @@ namespace GrantFoods.ViewModels
 
             
             UserCartItemCount = cartItemService.GetUserCartCount();
-
-            Categories = new ObservableCollection<Category>();
-            TopRatedItems = new ObservableCollection<Product>();
-            TopRatedRestaurants = new ObservableCollection<Restaurant>();
-            Offers = new ObservableCollection<Product>();
 
             GetCategories();
             GetTopRatedItems();
@@ -105,6 +100,7 @@ namespace GrantFoods.ViewModels
             await Shell.Current.GoToAsync(nameof(CategoryView), true, new Dictionary<string, object>
         {
             {"category", category }
+                
         });
         }
     }

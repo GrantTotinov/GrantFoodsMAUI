@@ -1,7 +1,7 @@
 ﻿
 namespace GrantFoods.Models
 {
-    public partial class Category : ObservableObject
+    public class Category 
     {
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }

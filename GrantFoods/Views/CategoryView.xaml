@@ -6,22 +6,54 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="GrantFoods.Views.CategoryView"
              Title="CategoryView"
-             x:DataType="viewmodel:CategoryViewModel">
-    
-                    <VerticalStackLayout>
+             >
+
+    <Grid RowDefinitions="auto,auto">
+                    <VerticalStackLayout Grid.Row="0"
+                                         x:DataType="viewmodel:CategoryViewModel">
                         <Image Source="{Binding SelectedCategory.CategoryImg}"
-                                                       HeightRequest="100"
-                                                       WidthRequest="95"
-                                                       Aspect="AspectFill"/>
+                               HeightRequest="100"
+                               WidthRequest="95"
+                               Aspect="AspectFill"/>
 
                         <Label Grid.Row="0"
-                                                       Grid.Column="1"
-                                                       Grid.ColumnSpan="2"
-                                                       Text="{Binding SelectedCategory.CategoryName}"
-                                                       FontSize="15"
-                                                       FontAttributes="Bold"/>
+                               Grid.Column="1"
+                               Grid.ColumnSpan="2"
+                               Text="{Binding SelectedCategory.CategoryName}"
+                               FontSize="15"
+                               FontAttributes="Bold"/>
 
-                        
-                    </VerticalStackLayout>  
-               
+            <Label Grid.Row="0"
+                               Grid.Column="1"
+                               Grid.ColumnSpan="2"
+                               Text="{Binding SelectedCategory.CategoryId}"
+                               FontSize="15"
+                               FontAttributes="Bold"/>
+        </VerticalStackLayout>
+
+        <VerticalStackLayout Grid.Row="1"
+                             >
+            <CollectionView 
+                ItemsSource="{Binding ProductsByCategory}"
+                            Margin="0,20"
+                            HeightRequest="200"
+                            
+                            HorizontalScrollBarVisibility="Never"
+                            ItemsLayout="VerticalList">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="100,100,100">
+                            <Label Grid.Column="0" Text="{Binding ProductName}"/>
+                            <Image Grid.Column="1" Source="{Binding ProductImg}"/>
+
+                            <Label Grid.Column="2" Text="{Binding CategoryId}"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+
+    </Grid>
+
 </ContentPage>
