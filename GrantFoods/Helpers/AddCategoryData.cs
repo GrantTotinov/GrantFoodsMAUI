@@ -15,37 +15,43 @@
                 {
                     CategoryId = 1,
                     CategoryName = "Burgers",
-                    CategoryImg = "burgercategory"
+                    CategoryImg = "burgercategory",
+                    CategoryPoster = "burgerposter"
                 },
                 new Category
                 {
                     CategoryId = 2,
                     CategoryName = "Pizza",
-                    CategoryImg = "pizzacategory"
+                    CategoryImg = "pizzacategory",
+                    CategoryPoster = "pizzaposter"
                 },
                 new Category
                 {
                     CategoryId = 3,
                     CategoryName = "Desserts",
-                    CategoryImg = "dessertcategory"
+                    CategoryImg = "dessertcategory",
+                    CategoryPoster = "dessertposter"
                 },
                 new Category
                 {
                     CategoryId = 4,
                     CategoryName = "Sushi",
-                    CategoryImg = "sushicategory"
+                    CategoryImg = "sushicategory",
+                    CategoryPoster = "sushiposter"
                 },
                 new Category
                 {
                     CategoryId = 5,
                     CategoryName = "Mexican",
-                    CategoryImg = "mexicancategory"
+                    CategoryImg = "mexicancategory",
+                    CategoryPoster = "mexicanposter"
                 },
                 new Category
                 {
                     CategoryId = 6,
                     CategoryName = "Vegan",
-                    CategoryImg = "vegancategory"
+                    CategoryImg = "vegancategory",
+                    CategoryPoster = "veganposter"
                 },
             };
         }
@@ -60,7 +66,8 @@
                     {
                         CategoryId=category.CategoryId,
                         CategoryName=category.CategoryName,
-                        CategoryImg=category.CategoryImg
+                        CategoryImg=category.CategoryImg,
+                        CategoryPoster=category.CategoryPoster
                     });
                 }
             }

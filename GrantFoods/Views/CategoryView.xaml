@@ -3,57 +3,204 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:helpers="clr-namespace:GrantFoods.Helpers"
              xmlns:viewmodel="clr-namespace:GrantFoods.ViewModels"
+             xmlns:models="clr-namespace:GrantFoods.Models"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
              x:Class="GrantFoods.Views.CategoryView"
-             Title="CategoryView"
-             >
+             Title="CategoryView">
 
-    <Grid RowDefinitions="auto,auto">
-                    <VerticalStackLayout Grid.Row="0"
-                                         x:DataType="viewmodel:CategoryViewModel">
-                        <Image Source="{Binding SelectedCategory.CategoryImg}"
-                               HeightRequest="100"
-                               WidthRequest="95"
-                               Aspect="AspectFill"/>
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="Purple" Offset="0.0" />
+            <GradientStop Color="red" Offset="1.0"/>
+        </LinearGradientBrush>
+    </ContentPage.Background>
 
-                        <Label Grid.Row="0"
-                               Grid.Column="1"
-                               Grid.ColumnSpan="2"
-                               Text="{Binding SelectedCategory.CategoryName}"
-                               FontSize="15"
-                               FontAttributes="Bold"/>
+ <!-- Main grid -->
+        <Grid RowDefinitions="Auto,Auto,Auto"
+              Margin="10,0,10,0"
+              IgnoreSafeArea="{OnPlatform Android=False, iOS=True}">
 
-            <Label Grid.Row="0"
-                               Grid.Column="1"
-                               Grid.ColumnSpan="2"
-                               Text="{Binding SelectedCategory.CategoryId}"
-                               FontSize="15"
-                               FontAttributes="Bold"/>
-        </VerticalStackLayout>
+        <!-- Poster Grid -->
+        <Border Grid.Row="0"
+                StrokeShape="RoundRectangle 0,0,40,40"
+                StrokeThickness="0"
+                HeightRequest="200"
+                Margin="-10,0">
+            <Grid>
+                <Image Source="{Binding SelectedCategory.CategoryPoster}"
+                   Aspect="AspectFill"
+                       WidthRequest="400"
+                       HeightRequest="200"/>
+                <Label Text="{Binding SelectedCategory.CategoryName}"
+                       VerticalOptions="End"
+                       HorizontalOptions="Center"
+                       TextColor="AliceBlue"
+                       FontSize="80"
+                       FontFamily="Bebas"/>
+            </Grid>
+        </Border>
+        <!-- Restaurants  -->
+        <CarouselView  Grid.Row="1"
+                       ItemsSource="{Binding RestaurantsByCategory}"
+                       x:Name="cvcatRestaurants"
+                       HeightRequest="150">
 
-        <VerticalStackLayout Grid.Row="1"
-                             >
-            <CollectionView 
-                ItemsSource="{Binding ProductsByCategory}"
-                            Margin="0,20"
-                            HeightRequest="200"
-                            
-                            HorizontalScrollBarVisibility="Never"
-                            ItemsLayout="VerticalList">
+            <CarouselView.ItemTemplate>
+                <DataTemplate x:DataType="models:Restaurant">
+                    <Grid>
+                       <!-- <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:CategoryViewModel}}, Path=GoToRestaurantFromCategory}"
+                                                CommandParameter="{Binding .}"/>
+                        </Grid.GestureRecognizers> -->
+                        <Border StrokeShape="RoundRectangle 25,25,25,25">
+                            <Image Source="{Binding RestaurantImg}"/>
 
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:CategoryViewModel}}, Path=GoToRestaurantFromCategoryCommand}"
+                                    CommandParameter="{Binding .}"/>
+                            </Border.GestureRecognizers>
+                        </Border>
+
+                        <Border HeightRequest="50"
+                                VerticalOptions="End"
+                                BackgroundColor="LightBlue"
+                                Padding="10,0,10,0"
+                                Opacity=".8"
+                                StrokeShape="RoundRectangle 0,0,25,25">
+                            <Grid>
+                                <Label Text="{Binding RestaurantName}"
+                                   TextColor="red"
+                                   VerticalOptions="CenterAndExpand"
+                                   HorizontalOptions="Center"
+                                   FontSize="Title"
+                                   FontFamily="Bebas"
+                                       />
+
+                                <Label Text="{Binding RestaurrantRating}"
+                                       HorizontalOptions="End"
+                                       VerticalOptions="Center"
+                                       FontFamily="Bebas"
+                                       FontSize="Title" />
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+            
+        <!-- products  -->
+
+
+        <Border Grid.Row="2"
+                StrokeShape="RoundRectangle 25,25,0,0"
+                BackgroundColor="#803F9BF2">
+            <CollectionView x:Name="Products"
+                        ItemsSource="{Binding ProductsByCategory}"
+                        Margin="10,10,10,10"
+                        VerticalOptions="FillAndExpand"
+                        HorizontalScrollBarVisibility="Never"
+                        ItemsLayout="VerticalList"
+                            HeightRequest="330">
                 <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid ColumnDefinitions="100,100,100">
-                            <Label Grid.Column="0" Text="{Binding ProductName}"/>
-                            <Image Grid.Column="1" Source="{Binding ProductImg}"/>
+                    <DataTemplate x:DataType="models:Product">
+                        <Border Padding="5"
+                                Margin="0,10,0,10"
+                                StrokeShape="RoundRectangle 25,25,25,25"
+                                BackgroundColor="Black">
 
-                            <Label Grid.Column="2" Text="{Binding CategoryId}"/>
-                        </Grid>
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:CategoryViewModel}}, Path=GoToProductFromCategoryCommand}"
+                                                      CommandParameter="{Binding .}"/>
+                            </Border.GestureRecognizers>
+                            <Grid RowDefinitions="Auto,Auto,Auto"
+                          ColumnDefinitions="Auto,Auto">
+
+                                <Border HeightRequest="150"
+                                WidthRequest="200"
+                                StrokeShape="RoundRectangle 25,25,25,25"
+                                HorizontalOptions="Start"
+                                Grid.Row="0"
+                                BackgroundColor="Transparent"
+                                        Grid.RowSpan="3">
+
+                                    <Image Source="{Binding ProductImg}"
+                                   Aspect="AspectFill"/>
+                                </Border>
+
+                                <Label Text="{Binding ProductName}"
+                                       Grid.Column="1"
+                                       FontFamily="Bebas"
+                                       TextColor="#F55910"
+                                       FontSize="Title"
+                                       HorizontalTextAlignment="Center" 
+                                       LineBreakMode="WordWrap" 
+                                       WidthRequest="130"
+                                       />
+
+                                <Image Source="rating.png"
+                                       HeightRequest="20"
+                                       WidthRequest="20"
+                                       Grid.Row="1"
+                                       Grid.Column="2"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Start"
+                                       Margin="20,0,0,40"
+                                       />
+
+                                <Label Text="{Binding ProductRating}"
+                                       Grid.Row="1"
+                                       Grid.Column="2"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Start"
+                                       Margin="45,4,0,40"
+                                       TextColor="#FFBE01"
+                                       FontSize="Large"
+                                       FontFamily="Bebas"
+                                       />
+
+                                <Image Source="deliverytime.png"
+                                       HeightRequest="20"
+                                       WidthRequest="20"
+                                       Grid.Row="2"
+                                       Grid.Column="2"
+                                       VerticalOptions="Start"
+                                       HorizontalOptions="Start"
+                                       Margin="20,-30,0,0"
+                                       />
+
+                                <Label Text="{Binding ProductDeliveryTime, StringFormat='{}{0} min'}"
+                                       Grid.Row="2"
+                                       Grid.Column="2"
+                                       VerticalOptions="Start"
+                                       HorizontalOptions="Start"
+                                       Margin="45,-32,0,0"
+                                       TextColor="#FFBE01"
+                                       FontSize="Large"
+                                       FontFamily="Bebas"
+                                       />
+
+
+                                <Label Text="{Binding ProductPrice, StringFormat='{0:c}'}"
+                                       Grid.Column="2"
+                                       Grid.Row="2"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="End"
+                                       FontFamily="Bebas"
+                                       FontSize="Title"
+                                       TextColor="#FFBE01"
+                                       
+                                       />
+                            </Grid>
+                        </Border>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-        </VerticalStackLayout>
+        </Border>
 
     </Grid>
 
+    
+
+    
 </ContentPage>

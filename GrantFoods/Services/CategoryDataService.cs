@@ -16,6 +16,7 @@ namespace GrantFoods.Services
                 CategoryId = c.Object.CategoryId,
                 CategoryName = c.Object.CategoryName,
                 CategoryImg =c.Object.CategoryImg,
+                CategoryPoster = c.Object.CategoryPoster,
             }).ToList();
             return categories;
         }

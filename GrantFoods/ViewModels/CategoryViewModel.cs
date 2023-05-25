@@ -16,8 +16,35 @@
 
 
         readonly ProductDataService productDataService;
+        readonly RestaurantDataService restaurantDataService;
         
         public ObservableCollection<Product> ProductsByCategory { get; set; } = new();
+        public ObservableCollection<Restaurant> RestaurantsByCategory { get; set; } = new();
+        
+
+        public CategoryViewModel(ProductDataService _productDataService, RestaurantDataService _restaurantDataService)
+        {
+            productDataService = _productDataService;
+            restaurantDataService = _restaurantDataService;
+
+            if (SelectedCategory != null)
+            {
+                GetProducts(SelectedCategory.CategoryId);
+                GetRestaurants(SelectedCategory.CategoryId);
+            }
+            
+        }
+
+        public async void GetRestaurants(int categoryId)
+        {
+            var data = await restaurantDataService.GetRestaurantsByCategoriesAsync(categoryId);
+            RestaurantsByCategory.Clear();
+            foreach (var restaurant in data)
+            {
+                RestaurantsByCategory.Add(restaurant);
+            }
+        }
+
         public async void GetProducts(int categoryid)
         {
             var data = await productDataService.GetProductsByCategoriesAsync(categoryid);
@@ -29,19 +56,25 @@
 
         }
 
-        public CategoryViewModel(ProductDataService _productDataService)
+        [RelayCommand]
+        async Task GoToProductFromCategory(Product product)
         {
-            productDataService = _productDataService;
-            if (SelectedCategory != null)
-            {
-                
-                GetProducts(SelectedCategory.CategoryId);
-            }
-            else Shell.Current.DisplayAlert("Error", "ok", "cancel");
+            if (product == null)
+                return;
+            await Shell.Current.GoToAsync(nameof(ProductView), true, new Dictionary<string, object>
+        {
+            {"product", product }
+        });
         }
-
-        
-        
+        [RelayCommand]
+        async Task GoToRestaurantFromCategory(Restaurant restaurant)
+        {
+            if (restaurant == null)
+                return;
+            await Shell.Current.GoToAsync(nameof(RestaurantView), true, new Dictionary<string, object>
+        {
+            {"restaurant", restaurant }
+        });
+        }
     }
-
 }

@@ -17,5 +17,8 @@ public partial class CategoryView : ContentPage
         base.OnNavigatedTo(args);
         var categoryid = categoryViewModel.SelectedCategory.CategoryId;
         categoryViewModel.GetProducts(categoryid);
+        categoryViewModel.GetRestaurants(categoryid);
     }
+
+    
 }

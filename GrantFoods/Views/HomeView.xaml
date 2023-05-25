@@ -12,7 +12,7 @@
 
     <ContentPage.Background>
         <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-            <GradientStop Color="Orange" Offset="0.0" />
+            <GradientStop Color="Purple" Offset="0.0" />
             <GradientStop Color="red" Offset="1.0"/>
         </LinearGradientBrush>
     </ContentPage.Background>
@@ -112,7 +112,7 @@
                             
                             <Border.GestureRecognizers>
                                 <TapGestureRecognizer
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viemodel:HomeViewModel}}, Path=GotoCategoryCommand}"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viemodel:HomeViewModel}}, Path=GotoCategoryFromHomeCommand}"
                                                 CommandParameter="{Binding .}"/>
                             </Border.GestureRecognizers> 
 
@@ -140,11 +140,15 @@
                        >
             
             <CarouselView.ItemTemplate>
-                <DataTemplate>
-
+                <DataTemplate x:DataType="models:Restaurant">
                     <Grid>
                         <Border StrokeShape="RoundRectangle 25,25,25,25">
                             <Image Source="{Binding RestaurantImg}"/>
+
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viemodel:HomeViewModel}}, Path=GoToRestaurantFromHomeCommand}"
+                                                      CommandParameter="{Binding .}"/>
+                            </Border.GestureRecognizers>
                         </Border>
 
                         <Border HeightRequest="50"
@@ -171,6 +175,7 @@
                                 
                             </Grid>
                         </Border>
+                        
                     </Grid>
 
                 </DataTemplate>
@@ -190,13 +195,30 @@
                         VerticalOptions="FillAndExpand"
                         HorizontalScrollBarVisibility="Never"
                         ItemsLayout="VerticalList"
-                        SelectionChanged="Products_SelectionChanged">
+                        Header="{Binding .}">
+                <CollectionView.HeaderTemplate>
+                    <DataTemplate x:DataType="models:Product">
+                        <VerticalStackLayout>
+                            <Label Text="Top Rated Products"
+                                   FontSize="Title"
+                                   FontAttributes="Bold"
+                                   FontFamily="Bebas"
+                                   TextColor="AliceBlue"
+                                   HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.HeaderTemplate>
             <CollectionView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="models:Product">
                         <Border Padding="5"
                                 Margin="0,10,0,10"
                                 StrokeShape="RoundRectangle 25,25,25,25"
                                 BackgroundColor="Black">
+
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viemodel:HomeViewModel}}, Path=GoToProductFromHomeCommand}"
+                                                CommandParameter="{Binding .}"/>
+                            </Border.GestureRecognizers>
                             <Grid RowDefinitions="Auto,Auto,Auto"
                           ColumnDefinitions="Auto,Auto">
                         
@@ -232,7 +254,7 @@
                                        Margin="20,0,0,40"
                                        />
                                 
-                                <Label Text="4.2"
+                                <Label Text="{Binding ProductRating}"
                                        Grid.Row="1"
                                        Grid.Column="2"
                                        VerticalOptions="Center"

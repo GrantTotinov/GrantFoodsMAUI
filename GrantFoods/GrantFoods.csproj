@@ -75,6 +75,7 @@
 	  <None Remove="Resources\Images\braunitofeffee.jpg" />
 	  <None Remove="Resources\Images\burgercategory.png" />
 	  <None Remove="Resources\Images\burgerkinglogo.png" />
+	  <None Remove="Resources\Images\burgerposter.jpg" />
 	  <None Remove="Resources\Images\burjalarab.png" />
 	  <None Remove="Resources\Images\burjkhalifa.png" />
 	  <None Remove="Resources\Images\carnitasdeserdo.jpg" />
@@ -90,6 +91,7 @@
 	  <None Remove="Resources\Images\chocolate.jpg" />
 	  <None Remove="Resources\Images\deliverytime.png" />
 	  <None Remove="Resources\Images\dessertcategory.png" />
+	  <None Remove="Resources\Images\dessertposter.jpg" />
 	  <None Remove="Resources\Images\enchiladas.jpg" />
 	  <None Remove="Resources\Images\favourites.png" />
 	  <None Remove="Resources\Images\fishrioshti.jpg" />
@@ -112,6 +114,7 @@
 	  <None Remove="Resources\Images\mcdonaldslogo.png" />
 	  <None Remove="Resources\Images\mcveggie.jpg" />
 	  <None Remove="Resources\Images\mexicancategory.png" />
+	  <None Remove="Resources\Images\mexicanposter.jpg" />
 	  <None Remove="Resources\Images\nikkologo.jpg" />
 	  <None Remove="Resources\Images\nut.jpg" />
 	  <None Remove="Resources\Images\nutella.jpg" />
@@ -122,6 +125,7 @@
 	  <None Remove="Resources\Images\pizzacategory.png" />
 	  <None Remove="Resources\Images\pizzahublogo.png" />
 	  <None Remove="Resources\Images\pizzahutlogo.png" />
+	  <None Remove="Resources\Images\pizzaposter.jpg" />
 	  <None Remove="Resources\Images\raffaella.jpg" />
 	  <None Remove="Resources\Images\rating.png" />
 	  <None Remove="Resources\Images\redvelvet.jpg" />
@@ -130,11 +134,14 @@
 	  <None Remove="Resources\Images\sundaylogo.jpg" />
 	  <None Remove="Resources\Images\supreme.png" />
 	  <None Remove="Resources\Images\sushicategory.png" />
+	  <None Remove="Resources\Images\sushiposter.jpg" />
+	  <None Remove="Resources\Images\sushiposter2.jpg" />
 	  <None Remove="Resources\Images\tacobelllogo.png" />
 	  <None Remove="Resources\Images\tacosdemar.jpg" />
 	  <None Remove="Resources\Images\tacosgrande.jpg" />
 	  <None Remove="Resources\Images\torograndelogo.jpg" />
 	  <None Remove="Resources\Images\vegancategory.png" />
+	  <None Remove="Resources\Images\veganposter.jpg" />
 	  <None Remove="Resources\Images\vegetarian.png" />
 	  <None Remove="Resources\Images\verdilogo.png" />
 	  <None Remove="Resources\Raw\burgercategory.json" />

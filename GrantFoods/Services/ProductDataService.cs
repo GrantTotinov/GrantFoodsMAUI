@@ -21,6 +21,7 @@ namespace GrantFoods.Services
                 ProductPrice=p.Object.ProductPrice,
                 ProductDescritpion=p.Object.ProductDescritpion,
                 ProductDeliveryTime=p.Object.ProductDeliveryTime,
+                ProductRating=p.Object.ProductRating
 
             }).ToList();
             return products;

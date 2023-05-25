@@ -73,7 +73,7 @@ namespace GrantFoods.ViewModels
 
         private async void GetTopRatedItems()
         {
-            var data = await productDataService.GetProductsAsync();
+            var data = await productDataService.GetTopRatedProductsAsync();
             TopRatedItems.Clear();
             foreach(var product in data)
             {
@@ -91,9 +91,9 @@ namespace GrantFoods.ViewModels
             }
         }
 
-        //testova komanda za vlizane v categorii
+        
         [RelayCommand]
-        async Task GotoCategory(Category category)
+        async Task GotoCategoryFromHome(Category category)
         {
             if (category == null)
                 return;
@@ -101,6 +101,27 @@ namespace GrantFoods.ViewModels
         {
             {"category", category }
                 
+        });
+        }
+        [RelayCommand]
+        async Task GoToProductFromHome(Product product)
+        {
+            if (product == null)
+                return;
+            await Shell.Current.GoToAsync(nameof(ProductView), true, new Dictionary<string, object>
+        {
+            {"product", product }
+        });
+        }
+
+        [RelayCommand]
+        async Task GoToRestaurantFromHome(Restaurant restaurant)
+        {
+            if (restaurant == null)
+                return;
+            await Shell.Current.GoToAsync(nameof(RestaurantView), true, new Dictionary<string, object>
+        {
+            {"restaurant", restaurant }
         });
         }
     }
