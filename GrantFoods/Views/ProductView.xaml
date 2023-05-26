@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:helpers="clr-namespace:GrantFoods.Helpers"
+             xmlns:viewmodel="clr-namespace:GrantFoods.ViewModels"
              x:Class="GrantFoods.Views.ProductView"
              Title="ProductView">
-    <VerticalStackLayout>
-        <Label 
-            Text="ProductView"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="Purple" Offset="0.0" />
+            <GradientStop Color="red" Offset="1.0"/>
+        </LinearGradientBrush>
+    </ContentPage.Background>
 </ContentPage>

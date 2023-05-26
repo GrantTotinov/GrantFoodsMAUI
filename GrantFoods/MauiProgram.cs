@@ -6,9 +6,10 @@ global using Android.Graphics.Drawables;
 global using Android.Content;
 #endif
 global using Microsoft.Maui.Controls.Platform;
-global using System.Timers;
 global using Timer = System.Timers.Timer;
 global using System.Linq;
+  
+
 
 //Nuget Usings
 global using SkiaSharp.Views.Maui.Controls.Hosting;
@@ -17,6 +18,9 @@ global using CommunityToolkit.Mvvm.Input;
 global using CommunityToolkit.Mvvm.ComponentModel;
 global using Firebase.Database;
 global using Firebase.Database.Query;
+global using SQLite;
+
+
 
 //MVVM Usings
 global using GrantFoods.Services;

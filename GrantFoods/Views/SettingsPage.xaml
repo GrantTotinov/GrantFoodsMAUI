@@ -12,7 +12,7 @@
                     x:Name="ButtonProducts"
                     Clicked="ButtonProducts_Clicked"/>
 
-        <Button Text="Manage Products"
+        <Button Text="Manage Restaurants"
                     x:Name="ButtonRestaurants"
                     Clicked="ButtonRestaurants_Clicked"/>
 

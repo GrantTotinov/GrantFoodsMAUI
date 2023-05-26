@@ -8,6 +8,8 @@ namespace GrantFoods.ViewModels
         readonly CategoryDataService categoryDataService;
         readonly ProductDataService productDataService;
         readonly RestaurantDataService restaurantDataService;
+        
+        public SQLiteAsyncConnection sqliteconnection;
 
         [ObservableProperty]
         string userName;
@@ -41,6 +43,12 @@ namespace GrantFoods.ViewModels
             GetTopRatedItems();
             GetTopRatedRestaurants();
             GetOffers();
+            SetupDataBase();
+        }
+
+        private void SetupDataBase()
+        {
+            cartItemService.SetupDataBase();
         }
 
         private async void GetOffers()

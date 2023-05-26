@@ -21,7 +21,11 @@ public partial class SettingsPage : ContentPage
 
     private void ButtonCart_Clicked(object sender, EventArgs e)
     {
-
+        /*var createcarttable = new CreateCartTable();
+        if(createcarttable.CreateTable())
+            DisplayAlert("Success", "Cart Table Created", "OK");
+        else
+            DisplayAlert("ERROR", "Error while creating table", "OK");*/
     }
 
     async void ButtonRestaurants_Clicked(object sender, EventArgs e)
