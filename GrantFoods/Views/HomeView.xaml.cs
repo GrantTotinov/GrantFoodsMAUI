@@ -29,7 +29,7 @@ public partial class HomeView : ContentPage
 
     Timer timer;
 
-    [Obsolete]
+    
     private void AnimateCarousel()
     {
         timer = new Timer(4000) { AutoReset = true, Enabled = true};

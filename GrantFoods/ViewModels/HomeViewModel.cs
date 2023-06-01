@@ -36,20 +36,18 @@ namespace GrantFoods.ViewModels
             else
                 UserName = username;
 
-            
-            UserCartItemCount = cartItemService.GetUserCartCount();
-
             GetCategories();
             GetTopRatedItems();
             GetTopRatedRestaurants();
             GetOffers();
-            SetupDataBase();
         }
 
-        private void SetupDataBase()
+        /*public async Task<int> GetUserCartItemsCount()
         {
-            cartItemService.SetupDataBase();
-        }
+            //await cartItemService.GetCartItemsCount();
+            //return UserCartItemCount;
+        }*/
+        
 
         private async void GetOffers()
         {
@@ -112,24 +110,24 @@ namespace GrantFoods.ViewModels
         });
         }
         [RelayCommand]
-        async Task GoToProductFromHome(Product product)
+        async Task GoToProductFromHome(Product productfromhome)
         {
-            if (product == null)
+            if (productfromhome == null)
                 return;
             await Shell.Current.GoToAsync(nameof(ProductView), true, new Dictionary<string, object>
         {
-            {"product", product }
+            {"productfromhome", productfromhome }
         });
         }
 
         [RelayCommand]
-        async Task GoToRestaurantFromHome(Restaurant restaurant)
+        async Task GoToRestaurantFromHome(Restaurant restaurantfromhome)
         {
-            if (restaurant == null)
+            if (restaurantfromhome == null)
                 return;
             await Shell.Current.GoToAsync(nameof(RestaurantView), true, new Dictionary<string, object>
         {
-            {"restaurant", restaurant }
+            {"restaurantfromhome", restaurantfromhome }
         });
         }
     }

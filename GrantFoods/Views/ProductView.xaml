@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:helpers="clr-namespace:GrantFoods.Helpers"
              xmlns:viewmodel="clr-namespace:GrantFoods.ViewModels"
+             xmlns:models="clr-namespace:GrantFoods.Models"
+             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
              x:Class="GrantFoods.Views.ProductView"
              Title="ProductView">
     <ContentPage.Background>
@@ -11,4 +13,167 @@
             <GradientStop Color="red" Offset="1.0"/>
         </LinearGradientBrush>
     </ContentPage.Background>
+    <!--MAIN GRID -->
+    <Grid RowDefinitions="250, *"
+          IgnoreSafeArea="{OnPlatform Android=False, iOS=True}">
+        
+        <Border StrokeShape="RoundRectangle 40,40,40,40"
+                StrokeThickness="0"
+                Grid.Row="0">
+            
+        <Image  Source="{Binding SelectedProduct.ProductImg}"
+               Aspect="AspectFill"/>
+        </Border>
+
+        <Border Grid.Row="1"
+                StrokeShape="RoundRectangle 40,40,0,0"
+                StrokeThickness="0"
+                Margin="0,-60,0,0"
+                BackgroundColor="#B3000000">
+
+            <Grid RowDefinitions=" *, 4*, *"
+                  ColumnDefinitions="*, *, *">
+                
+                
+
+                <Label Grid.Row="0"
+                       Grid.ColumnSpan="3"
+                       Text="{Binding SelectedProduct.ProductName}"
+                       VerticalOptions="Start"
+                       HorizontalOptions="Center"
+                       FontAttributes="Bold"
+                       FontSize="40"
+                       FontFamily="Bebas"
+                       TextColor="AliceBlue"
+                       Margin="0,10,0,0"/>
+
+                <Grid Grid.Row="1"
+                       Grid.ColumnSpan="3"
+                      RowDefinitions="*,*,*"
+                      ColumnDefinitions="*,*,*">
+
+                    <Label Text="{Binding SelectedProduct.ProductDescritpion}"
+                       Grid.Row="0"
+                       Grid.ColumnSpan="3"
+                       LineBreakMode="WordWrap"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Start"
+                       WidthRequest="350"
+                       TextColor="AliceBlue"
+                       FontFamily="Bebas"
+                       FontSize="Medium"/>
+
+                    <Image Source="deliverytime.png"
+                           Aspect="AspectFit"
+                           WidthRequest="40"
+                           Grid.Row="1"
+                           />
+
+                    <Label Text="{Binding SelectedProduct.ProductDeliveryTime, StringFormat='{}{0} min'}"
+                           TextColor="AliceBlue"
+                           Grid.Row="1"
+                           Grid.Column="1"
+                           FontSize="Large"
+                           FontFamily="Bebas"
+                           FontAttributes="Bold"
+                           VerticalOptions="Center"
+                           Margin="-30,0,0,0"/>
+
+                    <Image Source="rating.png"
+                           Aspect="AspectFit"
+                           WidthRequest="40"
+                           Grid.Row="1"
+                           Grid.Column="1"
+                           HorizontalOptions="End"
+                           Margin="0,0,-20,0"/>
+
+                    <Label Text="{Binding SelectedProduct.ProductRating}"
+                           Grid.Row="1"
+                           Grid.Column="2"
+                           TextColor="AliceBlue"
+                           FontSize="25"
+                           FontAttributes="Bold"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           Margin="-40,0,0,0"
+                           FontFamily="Bebas"/>
+
+                    <Button CornerRadius="30"
+                            Grid.Row="2"
+                            WidthRequest="70"
+                            HeightRequest="70"
+                            BackgroundColor="AliceBlue"
+                            Text="+"
+                            TextColor="Black"
+                            FontAttributes="Bold"
+                            FontSize="40"
+                            HorizontalOptions="End"
+                            Command="{Binding IcrementOrderCommand}"/>
+
+                    <Button CornerRadius="30"
+                            Grid.Row="2"
+                            Grid.Column="2"
+                            WidthRequest="70"
+                            HeightRequest="70"
+                            BackgroundColor="AliceBlue"
+                            Text="-"
+                            TextColor="Black"
+                            FontAttributes="Bold"
+                            FontSize="40"
+                            HorizontalOptions="Start"
+                            Command="{Binding DecrementOrderCommand}"/>
+
+                    <Border Grid.Row="2"
+                            Grid.Column="1"
+                            StrokeShape="RoundRectangle 40,40,40,40"
+                            StrokeThickness="0"
+                            BackgroundColor="RoyalBlue"
+                            WidthRequest="110"
+                            HeightRequest="80">
+                        
+                    <Label Text="{Binding TotalQuantity}"
+                           TextColor="AliceBlue"
+                           
+                           FontFamily="Bebas"
+                           FontAttributes="Bold"
+                           FontSize="40"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"/>
+                        
+                    </Border>
+                </Grid>
+                
+
+                <Label Text="{Binding SelectedProduct.ProductPrice, StringFormat='{0:c}'}"
+                       Grid.Row="2"
+                       Grid.ColumnSpan="1"
+                       FontFamily="Bebas"
+                       FontSize="40"
+                       FontAttributes="Bold"
+                       TextColor="AliceBlue"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Start"/>
+
+                <Button Text="Add to Cart"
+                        Grid.Row="2"
+                        Grid.Column="2"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Start"
+                        WidthRequest="150"
+                        HeightRequest="50"
+                        CornerRadius="20"
+                        BackgroundColor="Black"
+                        Margin="-40,0,0,0"
+                        FontAttributes="Bold"
+                        FontFamily="Bebas"
+                        FontSize="Title"
+                        BorderColor="AliceBlue"
+                        BorderWidth="1"
+                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ProductDetailsViewModel}}, Path=AddToCartCommand}"/>
+                
+            </Grid>
+            
+        </Border>
+        
+    </Grid>
 </ContentPage>

@@ -129,6 +129,7 @@
 	  <None Remove="Resources\Images\raffaella.jpg" />
 	  <None Remove="Resources\Images\rating.png" />
 	  <None Remove="Resources\Images\redvelvet.jpg" />
+	  <None Remove="Resources\Images\remove.png" />
 	  <None Remove="Resources\Images\salmon.png" />
 	  <None Remove="Resources\Images\sombrerologo.png" />
 	  <None Remove="Resources\Images\sundaylogo.jpg" />
@@ -157,12 +158,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="CommunityToolkit.Maui" Version="5.1.0" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="5.2.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0" />
 		<PackageReference Include="FirebaseDatabase.net" Version="4.2.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0-preview.61" />
 		<PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
+		<PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.5" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -173,9 +175,6 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\CategoryView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\FavouritesView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\HomeView.xaml">

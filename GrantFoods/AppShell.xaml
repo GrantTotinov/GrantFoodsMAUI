@@ -22,10 +22,7 @@
                           Route="OffersView"/>
         </Tab>
         
-        <Tab Icon="favourites.png">
-            <ShellContent ContentTemplate="{DataTemplate view:FavouritesView}"
-                          Route="FavouritesView"/>
-        </Tab>
+        
         
         <Tab Icon="home.png"
              x:Name="MyHomePage">

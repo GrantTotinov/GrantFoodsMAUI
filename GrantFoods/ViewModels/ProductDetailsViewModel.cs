@@ -6,19 +6,16 @@ using System.Threading.Tasks;
 
 namespace GrantFoods.ViewModels
 {
-    [QueryProperty(nameof(SelectedProduct), "product")]
-    [QueryProperty(nameof(SelectedRestaurant), "restaurant")]
+    //[QueryProperty(nameof(SelectedProduct), "productfromcategory")]
+    
 
-
-    public partial class ProductDetailsViewModel : BaseViewModel
+    public partial class ProductDetailsViewModel : BaseViewModel, IQueryAttributable
     {
         readonly CartItemService cartItemService;
+        readonly DatabaseService databaseService;
 
         [ObservableProperty]
         Product selectedProduct;
-
-        [ObservableProperty]
-        Restaurant selectedRestaurant;
 
         private int _TotalQuantity;
         public int TotalQuantity
@@ -34,19 +31,60 @@ namespace GrantFoods.ViewModels
             get { return _TotalQuantity; }
         }
 
-        public ProductDetailsViewModel(CartItemService _cartItemService)
+        public ProductDetailsViewModel(CartItemService _cartItemService, DatabaseService _databaseService)
         {
             TotalQuantity = 0;
             cartItemService = _cartItemService;
+            databaseService = _databaseService;
         }
-
-       
 
         [RelayCommand]
-        private async Task GoToCart()
+        private async Task AddToCart()
         {
-            await Shell.Current.GoToAsync(nameof(CartView));
+            if (TotalQuantity > 0)
+            {
+                try {
+                    CartItem cartItem = new CartItem()
+                    {
+                        ProductId = SelectedProduct.ProductId,
+                        ProductName = SelectedProduct.ProductName,
+                        ProductImg = SelectedProduct.ProductImg,
+                        ProductPrice = SelectedProduct.ProductPrice,
+                        Quantity = TotalQuantity
+                    };
+                    await databaseService.AddItemAsync<CartItem>(cartItem);
+                    await Shell.Current.DisplayAlert("BonApetit", "Selected product is added to the cart", "OK");
+                    //}
+                }
+                catch (Exception ex)
+                {
+                    await Shell.Current.DisplayAlert("Oops", ex.Message, "OK");
+                }
+                finally
+                {
+                    await Shell.Current.GoToAsync(nameof(CartView));
+                }
+            }
+            else
+            {
+                await Shell.Current.DisplayAlert("Oops", "You need to choose at least one item", "OK");
+            }
+
+            
+
+
         }
+
+        [RelayCommand]
+        public async Task GoToCartFromProduct(CartItem cartItem)
+        {
+            await Shell.Current.GoToAsync(nameof(CartView), true, new Dictionary<string, object>
+        {
+            {"cartitem", cartItem }
+        });
+        }
+
+        
 
         [RelayCommand]
         private void IcrementOrder()
@@ -58,6 +96,11 @@ namespace GrantFoods.ViewModels
         private void DecrementOrder()
         {
             TotalQuantity--;
+        }
+
+        public void ApplyQueryAttributes(IDictionary<string, object> query)
+        {
+            SelectedProduct = query["productfromcategory"] as Product;
         }
     }
 }

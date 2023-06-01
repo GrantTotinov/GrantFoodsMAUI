@@ -63,34 +63,40 @@ public static class MauiProgram
 #if DEBUG
 		builder.Logging.AddDebug();
 #endif
-        //Services
+        //Services Region
 		builder.Services.AddSingleton<LandingPageService>();
         builder.Services.AddSingleton<CartItemService>();
         builder.Services.AddSingleton<CategoryDataService>();
         builder.Services.AddSingleton<ProductDataService>();
         builder.Services.AddSingleton<UserService>();
         builder.Services.AddSingleton<RestaurantDataService>();
+        builder.Services.AddSingleton<DatabaseService>();
 
-        //ViewModels
+        //ViewModels Region
         builder.Services.AddTransient<LandingViewModel>();
         builder.Services.AddTransient<UserViewModel>();
         builder.Services.AddTransient<HomeViewModel>();
         builder.Services.AddTransient<CategoryViewModel>();
+        builder.Services.AddTransient<ProductDetailsViewModel>();
+        builder.Services.AddTransient<CartViewModel>();
 
-        
 
-        //Views
+
+        //Views Region
         builder.Services.AddTransient<LoginView>();
         builder.Services.AddTransient<RegisterView>();
         builder.Services.AddTransient<HomeView>();
         builder.Services.AddTransient<OffersView>();
-        builder.Services.AddTransient<FavouritesView>();
         builder.Services.AddTransient<CartView>();
         builder.Services.AddTransient<AccountView>();
         builder.Services.AddTransient<LandingView>();
         builder.Services.AddTransient<CategoryView>();
         builder.Services.AddTransient<ProductView>();
         builder.Services.AddTransient<RestaurantView>();
+
+
+        
+
 
 
 

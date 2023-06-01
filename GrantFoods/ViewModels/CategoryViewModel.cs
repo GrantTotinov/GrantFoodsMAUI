@@ -1,18 +1,13 @@
 ﻿namespace GrantFoods.ViewModels
 {
-    [QueryProperty(nameof(SelectedCategory), "category")]
+   // [QueryProperty(nameof(SelectedCategory), "category")]
     
 
 
-    public partial class CategoryViewModel: BaseViewModel
+    public partial class CategoryViewModel: BaseViewModel, IQueryAttributable
     {
         [ObservableProperty]
-        Category selectedCategory;
-
-       
-
-        [ObservableProperty]
-        int totalProducts;
+        Category selectedCategory = new();
 
 
         readonly ProductDataService productDataService;
@@ -24,6 +19,7 @@
 
         public CategoryViewModel(ProductDataService _productDataService, RestaurantDataService _restaurantDataService)
         {
+            
             productDataService = _productDataService;
             restaurantDataService = _restaurantDataService;
 
@@ -57,24 +53,31 @@
         }
 
         [RelayCommand]
-        async Task GoToProductFromCategory(Product product)
+        async Task GoToProductFromCategory(Product productfromcategory)
         {
-            if (product == null)
+            if (productfromcategory == null)
                 return;
             await Shell.Current.GoToAsync(nameof(ProductView), true, new Dictionary<string, object>
         {
-            {"product", product }
+            {"productfromcategory", productfromcategory }
         });
         }
         [RelayCommand]
-        async Task GoToRestaurantFromCategory(Restaurant restaurant)
+        async Task GoToRestaurantFromCategory(Restaurant restaurantfromcategory)
         {
-            if (restaurant == null)
+            if (restaurantfromcategory == null)
                 return;
             await Shell.Current.GoToAsync(nameof(RestaurantView), true, new Dictionary<string, object>
         {
-            {"restaurant", restaurant }
+            {"restaurantfromcategory", restaurantfromcategory }
         });
+        }
+
+        public void ApplyQueryAttributes(IDictionary<string, object> query)
+        {
+            SelectedCategory = query["category"] as Category;
+            GetRestaurants(SelectedCategory.CategoryId);
+            GetProducts(SelectedCategory.CategoryId);
         }
     }
 }

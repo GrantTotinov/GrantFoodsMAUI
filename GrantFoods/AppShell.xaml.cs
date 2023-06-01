@@ -11,7 +11,6 @@ public partial class AppShell : Shell
         Routing.RegisterRoute(nameof(RegisterView), typeof(RegisterView));
 
         Routing.RegisterRoute(nameof(OffersView), typeof(OffersView));
-        Routing.RegisterRoute(nameof(FavouritesView), typeof(FavouritesView));
         Routing.RegisterRoute(nameof(HomeView), typeof(HomeView));
         Routing.RegisterRoute(nameof(CartView), typeof(CartView));
         Routing.RegisterRoute(nameof(AccountView), typeof(AccountView));
@@ -28,7 +27,7 @@ public partial class AppShell : Shell
         }
         else
         {
-            MyAppShell.CurrentItem = MyHomePage;
+           MyAppShell.CurrentItem = MyHomePage;
         }
     }
 }

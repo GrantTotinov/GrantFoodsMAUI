@@ -49,10 +49,8 @@
             <CarouselView.ItemTemplate>
                 <DataTemplate x:DataType="models:Restaurant">
                     <Grid>
-                       <!-- <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:CategoryViewModel}}, Path=GoToRestaurantFromCategory}"
-                                                CommandParameter="{Binding .}"/>
-                        </Grid.GestureRecognizers> -->
+                       
+                        
                         <Border StrokeShape="RoundRectangle 25,25,25,25">
                             <Image Source="{Binding RestaurantImg}"/>
 

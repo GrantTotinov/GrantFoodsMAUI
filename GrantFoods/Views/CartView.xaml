@@ -1,12 +1,144 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:viewmodel="clr-namespace:GrantFoods.ViewModels"
+             xmlns:model="clr-namespace:GrantFoods.Models"
+             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
              x:Class="GrantFoods.Views.CartView"
              Title="CartView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to CartView"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="Purple" Offset="0.0" />
+            <GradientStop Color="red" Offset="1.0"/>
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <!--MAIN GRID -->
+    <Grid RowDefinitions="auto, *, *"
+          IgnoreSafeArea="{OnPlatform Android=False, iOS=True}">
+
+        <!--Products Cartt -->
+        <Border Grid.Row="0"
+                StrokeShape="RoundRectangle 0,0,35,35"
+                StrokeThickness="0"
+                BackgroundColor="RoyalBlue">
+        <CollectionView 
+                        ItemsSource="{Binding CartItems}"
+                        HeightRequest="400"
+                        VerticalOptions="FillAndExpand"
+                        ItemsLayout="VerticalList"
+                        Margin="10">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:CartItem">
+                    <Border     HeightRequest="150"
+                                VerticalOptions="End"
+                                BackgroundColor="Black"
+                                StrokeShape="RoundRectangle 25,25,25,25"
+                                StrokeThickness="0"
+                                Margin="0,5,0,5"
+                                Padding="5">
+                        
+                    <Grid RowDefinitions="Auto,*"
+                          ColumnDefinitions="*,*,*">
+                        
+                        <Label Grid.Row="0"
+                               Grid.Column="1"
+                               
+                               HorizontalOptions="End"
+                               Text="{Binding ProductName}"
+                               FontSize="Title"
+                               FontFamily="Bebas"
+                               LineBreakMode="WordWrap" 
+                               WidthRequest="100"
+                               TextColor="#FFBE01"
+                               FontAttributes="Bold"/>
+                        
+                            <Border Grid.Column="0"
+                                    Grid.RowSpan="3"
+                                    HeightRequest="150"
+                                    WidthRequest="150"
+                                    StrokeShape="RoundRectangle 25,25,25,25"
+                                    StrokeThickness="0"
+                                    BackgroundColor="Black">
+
+                                <Image Source="{Binding ProductImg}"
+                               Aspect="AspectFill"/>
+                            </Border>
+
+                            <Label Text="{Binding ProductPrice, StringFormat='{0:c}'}"
+                                       Grid.Column="1"
+                                       Grid.Row="2"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="End"
+                                       FontFamily="Bebas"
+                                       FontSize="Title"
+                                       TextColor="#FFBE01"
+                                   FontAttributes="Bold"
+                                   Margin="-25,0,0,0"/>
+
+                            <Border Grid.Row="0"
+                                    Grid.Column="2"
+                                    StrokeShape="RoundRectangle 25,25,25,25"
+                                    StrokeThickness="0"
+                                    HeightRequest="50"
+                                    WidthRequest="50"
+                                    HorizontalOptions="End"
+                                    VerticalOptions="End"
+                                    Margin="5">
+                                <Image Source="remove.png"
+                                       Aspect="AspectFill"/>
+                            </Border>
+
+                            <Label Text="{Binding Quantity,StringFormat='x {0}'}"
+                                    Grid.Column="2"
+                                       Grid.Row="2"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="End"
+                                       FontFamily="Bebas"
+                                       FontSize="Title"
+                                       TextColor="#FFBE01"
+                                   FontAttributes="Bold"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        </Border>
+
+        <Grid Grid.Row="1"
+              ColumnDefinitions="*,*"
+              RowDefinitions="*,*">
+            
+            <Label Text="Total"
+               Grid.Column="0"
+               FontSize="50"
+               FontAttributes="Bold"
+               FontFamily="Bebas"
+               Margin="10,10,0,0"/>
+            
+            <Label Text="{Binding TotalCost, StringFormat='{0:c}'}"
+                   Grid.Column="1"
+                   FontSize="50"
+                   HorizontalOptions="End"
+                   FontAttributes="Bold"
+                   FontFamily="Bebas"
+                   Margin="0,10,10,0"/>
+
+        </Grid>
+        <Button Grid.Row="3"
+                Grid.ColumnSpan="2"
+                CornerRadius="30"
+                WidthRequest="350"
+                HeightRequest="70"
+                VerticalOptions="End"
+                Text="Checkout"
+                BackgroundColor="Black"
+                FontAttributes="Bold"
+                FontFamily="Bebas"
+                FontSize="50"
+                Margin="0,0,0,30"/>
+    </Grid>
 </ContentPage>
