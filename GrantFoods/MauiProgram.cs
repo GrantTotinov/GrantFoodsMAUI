@@ -95,14 +95,6 @@ public static class MauiProgram
         builder.Services.AddTransient<RestaurantView>();
 
 
-        
-
-
-
-
-
-
-
 
         return builder.Build();
 	}

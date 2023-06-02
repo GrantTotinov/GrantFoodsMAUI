@@ -10,9 +10,9 @@ public partial class CartView : ContentPage
 		BindingContext = cartViewModel;
 	}
 
-    protected override async void OnAppearing()
+    /*protected override  void OnAppearing()
     {
         base.OnAppearing();
-		//await cartViewModel.LoadCartItemsAsync();
-    }
+		await cartViewModel.LoadCartItemsAsync();
+    }*/
 }

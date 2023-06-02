@@ -27,32 +27,11 @@
               
             <VerticalStackLayout VerticalOptions="Center"
                                  Grid.Column="0">
-                <!-- 2 lines -->
-                <Rectangle Fill="AliceBlue"
-                           HeightRequest="2"
-                           HorizontalOptions="Start"
-                           WidthRequest="25"/>
-
-                <Rectangle Fill="AliceBlue"
-                           HeightRequest="2"
-                           HorizontalOptions="Start"
-                           WidthRequest="35"
-                           Margin="0,5,0,0"/>
-
-                <!-- Picker -->
-                <Picker 
-                        Title="Search Options"
-                        TitleColor="AliceBlue"
-                        FontFamily="NexaHeavy"
-                        TextColor="white">
-                    <Picker.ItemsSource>
-                        <x:Array Type="{x:Type x:String}">
-                            <x:String>Top Rated</x:String>
-                            <x:String>Nearby You</x:String>
-
-                        </x:Array>
-                    </Picker.ItemsSource>
-                </Picker>
+                <Image Source="cart.png"
+                       HeightRequest="40"
+                       WidthRequest="40"
+                       HorizontalOptions="Start"
+                       Margin="20,-20,0,0"/>
             </VerticalStackLayout>
             <!-- SerachBar -->
             <Border Grid.ColumnSpan="2"

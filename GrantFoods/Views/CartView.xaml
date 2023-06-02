@@ -89,7 +89,13 @@
                                     VerticalOptions="End"
                                     Margin="5">
                                 <Image Source="remove.png"
-                                       Aspect="AspectFill"/>
+                                       Aspect="AspectFill"
+                                      />
+
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:CartViewModel}}, Path=DeleteCartItemCommand}"
+                                                              CommandParameter="{Binding CartItemId}"/>
+                                    </Border.GestureRecognizers>
                             </Border>
 
                             <Label Text="{Binding Quantity,StringFormat='x {0}'}"

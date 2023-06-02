@@ -16,12 +16,15 @@ namespace GrantFoods.ViewModels
         [ObservableProperty]
         decimal totalCost;
 
+        
         public CartViewModel(DatabaseService _databaseService)
         {
+           
             databaseService = _databaseService;
             TotalCost = 0;
-            LoadCartItemsAsync();    
+            LoadCartItemsAsync();
             
+
         }
 
         public async Task LoadCartItemsAsync()
@@ -34,7 +37,7 @@ namespace GrantFoods.ViewModels
 
                 foreach(var cartitem in cartitems)
                 {
-                    CartItems.Add(new UserCartItem()
+                     CartItems.Add(new UserCartItem()
                     {
                         CartItemId = cartitem.CartItemId,
                         ProductId=cartitem.ProductId,
@@ -45,13 +48,13 @@ namespace GrantFoods.ViewModels
                         Cost=cartitem.ProductPrice * cartitem.Quantity
                     });
                     TotalCost += cartitem.ProductPrice * cartitem.Quantity;
-                    
+
                 }
             }
         }
 
         [RelayCommand]
-        private async Task DeleteCartItemAsync(int Id)
+         async Task DeleteCartItemAsync(int Id)
         {
             IsBusy = true;
             try
@@ -60,6 +63,7 @@ namespace GrantFoods.ViewModels
                 {
                     var cartitem = CartItems.FirstOrDefault(c => c.CartItemId == Id);
                     CartItems.Remove(cartitem);
+                    
                 }
                 else
                 {
@@ -69,8 +73,11 @@ namespace GrantFoods.ViewModels
             finally
             {
                 IsBusy = false;
+
             }
         }
+
+
         
     }
 }

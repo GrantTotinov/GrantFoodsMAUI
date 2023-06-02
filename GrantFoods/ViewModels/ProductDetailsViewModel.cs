@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Maui.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -69,23 +70,15 @@ namespace GrantFoods.ViewModels
             {
                 await Shell.Current.DisplayAlert("Oops", "You need to choose at least one item", "OK");
             }
-
-            
-
-
         }
 
         [RelayCommand]
-        public async Task GoToCartFromProduct(CartItem cartItem)
+        public async Task GoToCartFromProduct()
         {
-            await Shell.Current.GoToAsync(nameof(CartView), true, new Dictionary<string, object>
-        {
-            {"cartitem", cartItem }
-        });
+            await Shell.Current.GoToAsync(nameof(Tab));
         }
 
         
-
         [RelayCommand]
         private void IcrementOrder()
         {
