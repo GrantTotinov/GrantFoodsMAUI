@@ -1,12 +1,232 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:GrantFoods.ViewModels"
+             xmlns:model="clr-namespace:GrantFoods.Models"
+             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
              x:Class="GrantFoods.Views.RestaurantView"
-             Title="RestaurantView">
-    <VerticalStackLayout>
-        <Label 
-            Text="RestaurantView"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="RestaurantView"
+             >
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="Purple" Offset="0.0" />
+            <GradientStop Color="red" Offset="1.0"/>
+        </LinearGradientBrush>
+    </ContentPage.Background>
+    <!--MAIN GRID -->
+    <Grid RowDefinitions="250, *"
+          IgnoreSafeArea="{OnPlatform Android=False, iOS=True}"
+          Margin="10,45,10,0">
+
+        <Border StrokeShape="RoundRectangle 40,40,40,40"
+                StrokeThickness="0"
+                Grid.Row="0">
+
+            <Image  Source="{Binding SelectedRestaurant.RestaurantImg}"
+               Aspect="AspectFit"/>
+        </Border>
+
+        <Border Grid.Row="1"
+                StrokeShape="RoundRectangle 40,40,0,0"
+                StrokeThickness="0"
+                Margin="0,-60,0,0"
+                BackgroundColor="#B3000000">
+
+            <Grid RowDefinitions=" *, 4*, *"
+                  ColumnDefinitions="*, *, *">
+
+                <Image Source="rating.png"
+                           Aspect="AspectFit"
+                           WidthRequest="20"
+                           Grid.Row="0"
+                           Grid.Column="1"
+                           HorizontalOptions="End"
+                           Margin="0,0,-60,20"/>
+
+                <Label Text="{Binding SelectedRestaurant.RestaurrantRating}"
+                           Grid.Row="0"
+                           Grid.Column="2"
+                           TextColor="AliceBlue"
+                           FontSize="25"
+                           FontAttributes="Bold"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           Margin="35,0,0,15"
+                           FontFamily="Bebas"/>
+
+
+                <Label Grid.Row="0"
+                       Grid.ColumnSpan="3"
+                       Text="{Binding SelectedRestaurant.RestaurantName}"
+                       VerticalOptions="Start"
+                       HorizontalOptions="Center"
+                       FontAttributes="Bold"
+                       FontSize="40"
+                       FontFamily="Bebas"
+                       TextColor="AliceBlue"
+                       Margin="0,10,0,0"/>
+
+                <Grid Grid.Row="1"
+                       Grid.ColumnSpan="3"
+                      RowDefinitions="*,*,*"
+                      ColumnDefinitions="*,*,*">
+
+                    <Label Text="{Binding SelectedRestaurant.RestaurantDescription}"
+                       Grid.Row="0"
+                       Grid.ColumnSpan="3"
+                       LineBreakMode="WordWrap"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Start"
+                       WidthRequest="350"
+                       TextColor="AliceBlue"
+                       FontFamily="Bebas"
+                       FontSize="Medium"/>
+
+                </Grid>
+            </Grid>
+
+        </Border>
+
+        <Border Grid.Row="3"
+                StrokeShape="RoundRectangle 25,25,0,0"
+                BackgroundColor="#803F9BF2"
+                HeightRequest="319"
+                Margin="0,132,0,0">
+            <CollectionView x:Name="Products"
+                        Grid.Row="3"
+                        ItemsSource="{Binding ProductsByRestaurant}"
+                        Margin="10,10,10,10"
+                        VerticalOptions="FillAndExpand"
+                        HorizontalScrollBarVisibility="Never"
+                        ItemsLayout="VerticalList"
+                        Header="{Binding .}">
+                <CollectionView.HeaderTemplate>
+                    <DataTemplate >
+                        <VerticalStackLayout>
+                            <Label Text="{Binding SelectedRestaurant.RestaurantName, StringFormat='{}{0} foods'}"
+                                   FontSize="Title"
+                                   FontAttributes="Bold"
+                                   FontFamily="Bebas"
+                                   TextColor="AliceBlue"
+                                   HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.HeaderTemplate>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate >
+                        <Border Padding="5"
+                                Margin="0,10,0,10"
+                                StrokeShape="RoundRectangle 25,25,25,25"
+                                BackgroundColor="Black">
+
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer />
+                            </Border.GestureRecognizers>
+                            <Grid RowDefinitions="Auto,Auto,Auto"
+                          ColumnDefinitions="Auto,Auto">
+
+                                <Border HeightRequest="150"
+                                WidthRequest="200"
+                                StrokeShape="RoundRectangle 25,25,25,25"
+                                HorizontalOptions="Start"
+                                Grid.Row="0"
+                                BackgroundColor="Transparent"
+                                        Grid.RowSpan="3">
+
+                                    <Image Source="{Binding ProductImg}"
+                                   Aspect="AspectFill"/>
+                                </Border>
+
+                                <Label Text="{Binding ProductName}"
+                                       Grid.Column="1"
+                                       FontFamily="Bebas"
+                                       TextColor="#F55910"
+                                       FontSize="Title"
+                                       HorizontalTextAlignment="Center" 
+                                       LineBreakMode="WordWrap" 
+                                       WidthRequest="130"
+                                       />
+
+                                <Image Source="rating.png"
+                                       HeightRequest="20"
+                                       WidthRequest="20"
+                                       Grid.Row="1"
+                                       Grid.Column="2"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Start"
+                                       Margin="20,0,0,40"
+                                       />
+
+                                <Label Text="{Binding ProductRating}"
+                                       Grid.Row="1"
+                                       Grid.Column="2"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Start"
+                                       Margin="45,4,0,40"
+                                       TextColor="#FFBE01"
+                                       FontSize="Large"
+                                       FontFamily="Bebas"
+                                       />
+
+                                <Image Source="deliverytime.png"
+                                       HeightRequest="20"
+                                       WidthRequest="20"
+                                       Grid.Row="2"
+                                       Grid.Column="2"
+                                       VerticalOptions="Start"
+                                       HorizontalOptions="Start"
+                                       Margin="20,-30,0,0"
+                                       />
+
+                                <Label Text="{Binding ProductDeliveryTime, StringFormat='{}{0} min'}"
+                                       Grid.Row="2"
+                                       Grid.Column="2"
+                                       VerticalOptions="Start"
+                                       HorizontalOptions="Start"
+                                       Margin="45,-32,0,0"
+                                       TextColor="#FFBE01"
+                                       FontSize="Large"
+                                       FontFamily="Bebas"
+                                       />
+
+
+                                <Label Text="{Binding ProductPrice, StringFormat='{0:c}'}"
+                                       Grid.Column="2"
+                                       Grid.Row="2"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="End"
+                                       FontFamily="Bebas"
+                                       FontSize="Title"
+                                       TextColor="#FFBE01"
+                                       
+                                       />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Border>
+        <Image Margin="0,-40,0,0"
+               Grid.Row="0"
+               Source="backarrow"
+               VerticalOptions="Start"
+               HeightRequest="50"
+               WidthRequest="50"
+               HorizontalOptions="Start">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer/>
+            </Image.GestureRecognizers>
+        </Image>
+
+        <Label Grid.Row="0"
+               Text="Return to Home"
+               FontAttributes="Bold"
+               FontFamily="Bebas"
+               FontSize="Large"
+               VerticalOptions="Start"
+               Margin="55,-25,0,0"
+               TextColor="AliceBlue">
+
+        </Label>
+    </Grid>
 </ContentPage>

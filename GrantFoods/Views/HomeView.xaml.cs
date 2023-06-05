@@ -5,10 +5,12 @@ namespace GrantFoods.Views;
 
 public partial class HomeView : ContentPage
 {
-
-	public HomeView(HomeViewModel homeViewModel)
+    HomeViewModel homeViewModel;
+   
+    public HomeView(HomeViewModel _homeViewModel)
 	{
 		InitializeComponent();
+        homeViewModel = _homeViewModel;
         BindingContext = homeViewModel;
         Microsoft.Maui.Handlers.PickerHandler.Mapper.AppendToMapping("MyCustomization", (handler, view) =>
         {
@@ -23,13 +25,13 @@ public partial class HomeView : ContentPage
 #endif
             }
         });
-
+        
         AnimateCarousel();
     }
 
     Timer timer;
 
-    
+    [Obsolete]
     private void AnimateCarousel()
     {
         timer = new Timer(4000) { AutoReset = true, Enabled = true};
@@ -47,13 +49,12 @@ public partial class HomeView : ContentPage
         };
     }
 
-    
-
-    private  void Products_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    protected override  void OnAppearing()
     {
-       
+        base.OnAppearing();
+        _ = homeViewModel.ReturnCount();
     }
 
-    
+
 
 }

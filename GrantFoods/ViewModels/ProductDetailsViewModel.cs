@@ -72,12 +72,7 @@ namespace GrantFoods.ViewModels
             }
         }
 
-        [RelayCommand]
-        public async Task GoToCartFromProduct()
-        {
-            await Shell.Current.GoToAsync(nameof(Tab));
-        }
-
+       
         
         [RelayCommand]
         private void IcrementOrder()
@@ -93,7 +88,13 @@ namespace GrantFoods.ViewModels
 
         public void ApplyQueryAttributes(IDictionary<string, object> query)
         {
-            SelectedProduct = query["productfromcategory"] as Product;
+            SelectedProduct = query["product"] as Product;
+            
+        }
+
+        private async Task ReturnHomeFromProductAsync()
+        {
+            await Shell.Current.GoToAsync(nameof(HomeView), true);
         }
     }
 }

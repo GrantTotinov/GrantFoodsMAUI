@@ -9,11 +9,13 @@ public partial class AppShell : Shell
         Routing.RegisterRoute(nameof(LandingView), typeof(LandingView));
         Routing.RegisterRoute(nameof(LoginView), typeof(LoginView));
         Routing.RegisterRoute(nameof(RegisterView), typeof(RegisterView));
+        Routing.RegisterRoute(nameof(LogoutView), typeof(LogoutView));
 
         Routing.RegisterRoute(nameof(OffersView), typeof(OffersView));
         Routing.RegisterRoute(nameof(HomeView), typeof(HomeView));
         Routing.RegisterRoute(nameof(CartView), typeof(CartView));
         Routing.RegisterRoute(nameof(AccountView), typeof(AccountView));
+        Routing.RegisterRoute(nameof(OrderView), typeof(OrderView));
 
         Routing.RegisterRoute(nameof(CategoryView), typeof(CategoryView));
         Routing.RegisterRoute(nameof(ProductView), typeof(ProductView));

@@ -23,6 +23,18 @@ namespace GrantFoods.Services
                 return Database.Table<TTable>();
             }
 
+        public async Task<IEnumerable<TTable>> DeleteAllTable<TTable>() where TTable : class, new()
+        {
+            var table = await GetTableAsync<TTable>();
+             return (IEnumerable<TTable>)table.DeleteAsync();
+        }
+
+            public async Task<int> GetTableCount<TTable>() where TTable : class, new()
+            {
+                await CreateTableIfDoesnttExists<TTable>();
+                return await Database.Table<TTable>().CountAsync();
+            }
+
             public async Task<IEnumerable<TTable>> GetAllAsync<TTable>() where TTable : class, new()
             {
                 var table = await GetTableAsync<TTable>();

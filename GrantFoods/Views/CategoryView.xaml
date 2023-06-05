@@ -18,12 +18,13 @@
 
  <!-- Main grid -->
         <Grid RowDefinitions="Auto,Auto,Auto"
-              Margin="10,0,10,0"
+              Margin="10,45,10,0"
               IgnoreSafeArea="{OnPlatform Android=False, iOS=True}">
 
+        
         <!-- Poster Grid -->
         <Border Grid.Row="0"
-                StrokeShape="RoundRectangle 0,0,40,40"
+                StrokeShape="RoundRectangle 40,40,40,40"
                 StrokeThickness="0"
                 HeightRequest="200"
                 Margin="-10,0">
@@ -195,7 +196,34 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </Border>
+        <Border Margin="0,-40,0,0"
+               Grid.Row="0"
+               VerticalOptions="Start"
+               HeightRequest="50"
+               WidthRequest="50"
+               HorizontalOptions="Start">
+            <Image Source="backarrow">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:CategoryViewModel}}, Path=RerurnHomeFromCategoryCommand}"
+                                      CommandParameter="{Binding .}"/>
+                </Image.GestureRecognizers>
+        </Image>
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:CategoryViewModel}}, Path=RerurnHomeFromCategoryCommand}"
+                                      CommandParameter="{Binding .}"/>
+            </Border.GestureRecognizers>
+        </Border>
 
+        <Label Grid.Row="0"
+               Text="Return to Home"
+               FontAttributes="Bold"
+               FontFamily="Bebas"
+               FontSize="Large"
+               VerticalOptions="Start"
+               Margin="55,-25,0,0"
+               TextColor="AliceBlue">
+
+        </Label>
     </Grid>
 
     

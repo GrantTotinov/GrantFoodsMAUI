@@ -59,5 +59,16 @@ namespace GrantFoods.Services
             }
             return productsbypricedec;
         }
+
+        public async Task<ObservableCollection<Product>> GetProductsByRestaurantsAsync(int restaurantId)
+        {
+            var producysbyrestaurants = new ObservableCollection<Product>();
+            var items = (await GetProductsAsync()).Where(p => p.RestaurantId == restaurantId).ToList();
+            foreach (var item in items)
+            {
+                producysbyrestaurants.Add(item);
+            }
+            return producysbyrestaurants;
+        }
     }
 }

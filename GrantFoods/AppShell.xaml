@@ -5,8 +5,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:view="clr-namespace:GrantFoods.Views"
     Shell.FlyoutBehavior="Disabled"
-    x:Name="MyAppShell">
-
+    x:Name="MyAppShell"
+    Shell.NavBarIsVisible="False"
+    Shell.PresentationMode="Animated">
+ 
 
     <ShellContent x:Name="MyLandingPage"
         ContentTemplate="{DataTemplate view:LandingView}"/>

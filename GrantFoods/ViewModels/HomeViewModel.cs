@@ -4,12 +4,12 @@ namespace GrantFoods.ViewModels
 {
     public partial class HomeViewModel : BaseViewModel
     {
-        readonly CartItemService cartItemService;
-        readonly CategoryDataService categoryDataService;
-        readonly ProductDataService productDataService;
-        readonly RestaurantDataService restaurantDataService;
-        
-        public SQLiteAsyncConnection sqliteconnection;
+        private readonly CartItemService cartItemService;
+        private readonly CategoryDataService categoryDataService;
+        private readonly ProductDataService productDataService;
+        private readonly RestaurantDataService restaurantDataService;
+        private readonly DatabaseService databaseService;
+
 
         [ObservableProperty]
         string userName;
@@ -23,12 +23,13 @@ namespace GrantFoods.ViewModels
         public ObservableCollection<Restaurant> TopRatedRestaurants { get; set; } = new();
         public ObservableCollection<Product> Offers { get; set; } = new();
 
-        public HomeViewModel(CartItemService _cartItemService, CategoryDataService _categoryDataService, ProductDataService _productDataService, RestaurantDataService _restaurantDataService)
+        public HomeViewModel(CartItemService _cartItemService, CategoryDataService _categoryDataService, ProductDataService _productDataService, RestaurantDataService _restaurantDataService, DatabaseService _databaseService)
         {
             cartItemService = _cartItemService;
             categoryDataService = _categoryDataService;
             productDataService = _productDataService;
             restaurantDataService = _restaurantDataService;
+            databaseService = _databaseService;
 
             var username = Preferences.Get("Username", String.Empty);
             if (String.IsNullOrEmpty(username))
@@ -40,13 +41,20 @@ namespace GrantFoods.ViewModels
             GetTopRatedItems();
             GetTopRatedRestaurants();
             GetOffers();
+            //ReturnCount();
+            
+            
+
         }
 
-        /*public async Task<int> GetUserCartItemsCount()
+        public async Task<int> ReturnCount()
         {
-            //await cartItemService.GetCartItemsCount();
-            //return UserCartItemCount;
-        }*/
+            var task = databaseService.GetTableCount<CartItem>();
+            UserCartItemCount = await task;
+            return UserCartItemCount;
+        }
+
+        
         
 
         private async void GetOffers()
@@ -62,7 +70,7 @@ namespace GrantFoods.ViewModels
         [RelayCommand]
         private async Task ViewCartAsync()
         {
-            await Shell.Current.GoToAsync($"//{nameof(CartView)}");
+            await Shell.Current.GoToAsync(nameof(CartView));
         }
 
 
@@ -110,24 +118,24 @@ namespace GrantFoods.ViewModels
         });
         }
         [RelayCommand]
-        async Task GoToProductFromHome(Product productfromhome)
+        async Task GoToProductFromHome(Product product)
         {
-            if (productfromhome == null)
+            if (product == null)
                 return;
             await Shell.Current.GoToAsync(nameof(ProductView), true, new Dictionary<string, object>
         {
-            {"productfromhome", productfromhome }
+            {"product", product }
         });
         }
 
         [RelayCommand]
-        async Task GoToRestaurantFromHome(Restaurant restaurantfromhome)
+        async Task GoToRestaurantFromHome(Restaurant restaurant)
         {
-            if (restaurantfromhome == null)
+            if (restaurant == null)
                 return;
             await Shell.Current.GoToAsync(nameof(RestaurantView), true, new Dictionary<string, object>
         {
-            {"restaurantfromhome", restaurantfromhome }
+            {"restaurant", restaurant }
         });
         }
     }

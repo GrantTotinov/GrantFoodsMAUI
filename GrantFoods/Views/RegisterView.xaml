@@ -7,7 +7,14 @@
              xmlns:viewmodel="clr-namespace:GrantFoods.ViewModels"
              Shell.NavBarIsVisible="False"
              x:DataType="viewmodel:UserViewModel">
-    
+
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="Purple" Offset="0.0" />
+            <GradientStop Color="red" Offset="1.0"/>
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
     <VerticalStackLayout Spacing="25"
                          Padding="30,0"
                          VerticalOptions="Center">
@@ -134,5 +141,10 @@
         <Button
             Text="Sign In"
             Command="{Binding RegisterCommand}"/>
+
+        <Button Text="Already have an account?"
+                WidthRequest="200"
+                BackgroundColor="Transparent"
+                Command="{Binding GoToLoginFromRegisterCommand}"/>
     </VerticalStackLayout>
 </ContentPage>

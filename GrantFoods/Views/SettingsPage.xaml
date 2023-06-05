@@ -16,9 +16,7 @@
                     x:Name="ButtonRestaurants"
                     Clicked="ButtonRestaurants_Clicked"/>
 
-        <Button Text="Manage Cart"
-                    x:Name="ButtonCart"
-                    Clicked="ButtonCart_Clicked"/>
+       
 
     </StackLayout>
 </ContentPage>

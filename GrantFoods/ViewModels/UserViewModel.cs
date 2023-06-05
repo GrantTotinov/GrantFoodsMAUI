@@ -71,7 +71,7 @@
                 if (Result)
                 {
                     Preferences.Set("Username", UserName);
-                    await Shell.Current.GoToAsync($"//{nameof(HomeView)}");
+                    await Shell.Current.GoToAsync(nameof(HomeView), true);
                 }
                 else
                 {
@@ -86,6 +86,17 @@
             {
                 IsBusy = false;
             }
+        }
+        [RelayCommand]
+        private async Task GoToRegisterFromLoginAsync()
+        {
+            await Shell.Current.GoToAsync(nameof(RegisterView), true);
+        }
+
+        [RelayCommand]
+        private async Task GoToLoginFromRegisterAsync()
+        {
+            await Shell.Current.GoToAsync(nameof(LoginView), true);
         }
     }
 }

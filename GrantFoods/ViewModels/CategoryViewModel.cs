@@ -10,8 +10,8 @@
         Category selectedCategory = new();
 
 
-        readonly ProductDataService productDataService;
-        readonly RestaurantDataService restaurantDataService;
+        private readonly ProductDataService productDataService;
+        private readonly RestaurantDataService restaurantDataService;
         
         public ObservableCollection<Product> ProductsByCategory { get; set; } = new();
         public ObservableCollection<Restaurant> RestaurantsByCategory { get; set; } = new();
@@ -53,23 +53,23 @@
         }
 
         [RelayCommand]
-        async Task GoToProductFromCategory(Product productfromcategory)
+        async Task GoToProductFromCategory(Product product)
         {
-            if (productfromcategory == null)
+            if (product == null)
                 return;
             await Shell.Current.GoToAsync(nameof(ProductView), true, new Dictionary<string, object>
         {
-            {"productfromcategory", productfromcategory }
+            {"product", product }
         });
         }
         [RelayCommand]
-        async Task GoToRestaurantFromCategory(Restaurant restaurantfromcategory)
+        async Task GoToRestaurantFromCategory(Restaurant restaurant)
         {
-            if (restaurantfromcategory == null)
+            if (restaurant == null)
                 return;
             await Shell.Current.GoToAsync(nameof(RestaurantView), true, new Dictionary<string, object>
         {
-            {"restaurantfromcategory", restaurantfromcategory }
+            {"restaurant", restaurant }
         });
         }
 
@@ -78,6 +78,12 @@
             SelectedCategory = query["category"] as Category;
             GetRestaurants(SelectedCategory.CategoryId);
             GetProducts(SelectedCategory.CategoryId);
+        }
+
+        [RelayCommand]
+        public async Task RerurnHomeFromCategoryAsync()
+        {
+            await Shell.Current.GoToAsync(nameof(HomeView), true);
         }
     }
 }

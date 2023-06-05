@@ -66,6 +66,7 @@
 	  <None Remove="Resources\Fonts\Teko-Regular.ttf" />
 	  <None Remove="Resources\Fonts\Teko-SemiBold.ttf" />
 	  <None Remove="Resources\Images\account.png" />
+	  <None Remove="Resources\Images\backarrow.png" />
 	  <None Remove="Resources\Images\beefdeluxe.jpg" />
 	  <None Remove="Resources\Images\beeftacos.jpg" />
 	  <None Remove="Resources\Images\belgium.jpg" />
@@ -186,7 +187,13 @@
 	  <MauiXaml Update="Views\LoginView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\LogoutView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\OffersView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\OrderView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ProductView.xaml">

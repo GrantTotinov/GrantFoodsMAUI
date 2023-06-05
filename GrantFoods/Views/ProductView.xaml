@@ -15,14 +15,15 @@
     </ContentPage.Background>
     <!--MAIN GRID -->
     <Grid RowDefinitions="250, *"
-          IgnoreSafeArea="{OnPlatform Android=False, iOS=True}">
+          IgnoreSafeArea="{OnPlatform Android=False, iOS=True}"
+          Margin="10,45,10,0">
         
         <Border StrokeShape="RoundRectangle 40,40,40,40"
                 StrokeThickness="0"
                 Grid.Row="0">
             
         <Image  Source="{Binding SelectedProduct.ProductImg}"
-               Aspect="AspectFill"/>
+               Aspect="AspectFit"/>
         </Border>
 
         <Border Grid.Row="1"
@@ -174,6 +175,29 @@
             </Grid>
             
         </Border>
-        
+
+        <Image Margin="0,-40,0,0"
+               Grid.Row="0"
+               Source="backarrow"
+               VerticalOptions="Start"
+               HeightRequest="50"
+               WidthRequest="50"
+               HorizontalOptions="Start">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ProductDetailsViewModel}}, Path=ReturnHomeFromProductCommand}"
+                                      CommandParameter="{Binding .}"/>
+            </Image.GestureRecognizers>
+        </Image>
+
+        <Label Grid.Row="0"
+               Text="Return to Home"
+               FontAttributes="Bold"
+               FontFamily="Bebas"
+               FontSize="Large"
+               VerticalOptions="Start"
+               Margin="55,-25,0,0"
+               TextColor="AliceBlue">
+
+        </Label>
     </Grid>
 </ContentPage>
