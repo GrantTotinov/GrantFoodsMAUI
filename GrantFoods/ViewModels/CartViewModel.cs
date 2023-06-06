@@ -4,9 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace GrantFoods.ViewModels
 {
-    public partial class CartViewModel : BaseViewModel
+    [QueryProperty(nameof(OrderIdProperty),nameof(OrderIdProperty))]
+    [QueryProperty(nameof(UserName), nameof(UserName))]
+
+    public partial class CartViewModel : BaseViewModel 
     {
         private readonly DatabaseService databaseService;
         private readonly FirebaseClient client;
@@ -16,6 +20,11 @@ namespace GrantFoods.ViewModels
         [ObservableProperty]
         decimal totalCost;
 
+        [ObservableProperty]
+        string orderIdProperty;
+
+        [ObservableProperty]
+        string userName;
         
         public CartViewModel(DatabaseService _databaseService)
         {
@@ -24,6 +33,7 @@ namespace GrantFoods.ViewModels
             TotalCost = 0;
             client = new FirebaseClient("https://grantfoods6-default-rtdb.europe-west1.firebasedatabase.app/");
             LoadCartItemsAsync();
+            
         }
 
         public async Task<string> PlaceOrderServiceAsync()
@@ -31,8 +41,8 @@ namespace GrantFoods.ViewModels
             var cartitems = await databaseService.GetAllAsync<CartItem>();
             var orderId=Guid.NewGuid().ToString();
 
-            var username = Preferences.Get("UserName", "Guest");
-
+            var username = Preferences.Get("Username", "Guest");
+            UserName = username;
             decimal totalCost = 0;
 
             foreach (var item in cartitems)
@@ -58,20 +68,37 @@ namespace GrantFoods.ViewModels
                 });
             return orderId;
         }
-
+        [RelayCommand]
         private async Task PlaceOrderAsync()
         {
-            if (CartItems == null) 
-            { 
+            if (CartItems == null)
+            {
                 await Shell.Current.DisplayAlert("Oops", "You need to chose food first", "OK");
             }
             else
             {
-                var id = await PlaceOrderServiceAsync() as string;
-                await databaseService.DeleteAllTable<CartItem>();
-                await Shell.Current.GoToAsync(nameof(OrderView), true);
-            }
+                var cartitems = await databaseService.GetAllAsync<CartItem>();
+                OrderIdProperty = await PlaceOrderServiceAsync();
+                
+                IsBusy = true;
+                try
+                {
+                    foreach(var item in cartitems)
+                    {
+                        await databaseService.DeleteItemAsync(item);
+                    }
+                    await Shell.Current.GoToAsync($"{nameof(OrderView)}?OrderIdProperty={OrderIdProperty}&UserName={UserName}", true);
+                    
 
+                }
+                finally
+                {
+                    
+                    IsBusy = false;
+
+                }
+                
+            }
            
         }
 
@@ -129,6 +156,7 @@ namespace GrantFoods.ViewModels
         {
             await Shell.Current.GoToAsync(nameof(HomeView), true);
         }
+
         
     }
 }

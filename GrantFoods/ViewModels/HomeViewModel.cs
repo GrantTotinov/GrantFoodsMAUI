@@ -138,5 +138,10 @@ namespace GrantFoods.ViewModels
             {"restaurant", restaurant }
         });
         }
+        [RelayCommand]
+        private async Task GoToHomeFromOffersAsync()
+        {
+            await Shell.Current.GoToAsync(nameof(HomeView), true);
+        }
     }
 }

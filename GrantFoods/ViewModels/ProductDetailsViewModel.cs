@@ -91,7 +91,7 @@ namespace GrantFoods.ViewModels
             SelectedProduct = query["product"] as Product;
             
         }
-
+        [RelayCommand]
         private async Task ReturnHomeFromProductAsync()
         {
             await Shell.Current.GoToAsync(nameof(HomeView), true);

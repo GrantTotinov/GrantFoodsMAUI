@@ -23,11 +23,11 @@ namespace GrantFoods.Services
                 return Database.Table<TTable>();
             }
 
-        public async Task<IEnumerable<TTable>> DeleteAllTable<TTable>() where TTable : class, new()
-        {
-            var table = await GetTableAsync<TTable>();
-             return (IEnumerable<TTable>)table.DeleteAsync();
-        }
+            public async Task<IEnumerable<TTable>> DeleteAllTable<TTable>() where TTable : class, new()
+            {
+                var table = await GetTableAsync<TTable>();
+                return (IEnumerable<TTable>)table.DeleteAsync();
+            }
 
             public async Task<int> GetTableCount<TTable>() where TTable : class, new()
             {
@@ -52,7 +52,9 @@ namespace GrantFoods.Services
                 await CreateTableIfDoesnttExists<TTable>();
                 return await action();
             }
-
+            
+            
+            
             public async Task<TTable> GetItemByKeyAsync<TTable>(object primaryKey) where TTable : class, new()
             {
                 //await CreateTableIfNotExists<TTable>();
@@ -86,5 +88,7 @@ namespace GrantFoods.Services
             }
 
             public async ValueTask DisposeAsync() => await _connection?.CloseAsync();
-        }
+
+       
+    }
     }

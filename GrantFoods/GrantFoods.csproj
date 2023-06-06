@@ -146,16 +146,12 @@
 	  <None Remove="Resources\Images\veganposter.jpg" />
 	  <None Remove="Resources\Images\vegetarian.png" />
 	  <None Remove="Resources\Images\verdilogo.png" />
-	  <None Remove="Resources\Raw\burgercategory.json" />
-	  <None Remove="Resources\Raw\dessertcategory.json" />
 	  <None Remove="Resources\Raw\foodorderanimation.json" />
 	  <None Remove="Resources\Raw\loginanimation.json" />
-	  <None Remove="Resources\Raw\mexicancategory.json" />
 	  <None Remove="Resources\Raw\newoffersanimation.json" />
-	  <None Remove="Resources\Raw\pizzacategory.json" />
+	  <None Remove="Resources\Raw\order.json" />
+	  <None Remove="Resources\Raw\orderanimation.json" />
 	  <None Remove="Resources\Raw\registrationanimation.json" />
-	  <None Remove="Resources\Raw\sushicategory.json" />
-	  <None Remove="Resources\Raw\vegancategory.json" />
 	</ItemGroup>
 
 	<ItemGroup>

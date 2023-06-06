@@ -19,7 +19,8 @@
     
     <!-- Main grid -->
     <Grid RowDefinitions=".15*,.07*,.07*,.58*"
-          Margin="10,20,10,0"
+          Margin="10,0,10,0"
+          Padding="0,45,0,0"
           IgnoreSafeArea="{OnPlatform Android=False, iOS=True}">
 
 
@@ -71,6 +72,11 @@
                                 Margin="0,10,0,10"
                                 StrokeShape="RoundRectangle 25,25,25,25"
                                 BackgroundColor="Black">
+
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:HomeViewModel}}, Path=GoToProductFromHomeCommand}"
+                                                CommandParameter="{Binding .}"/>
+                            </Border.GestureRecognizers>
                             <Grid RowDefinitions="Auto,Auto,Auto"
                           ColumnDefinitions="Auto,Auto">
 
@@ -161,5 +167,29 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </Border>
+
+        <Image Margin="0,-40,0,0"
+               Grid.Row="0"
+               Source="backarrow"
+               VerticalOptions="Start"
+               HeightRequest="50"
+               WidthRequest="50"
+               HorizontalOptions="Start">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:HomeViewModel}}, Path=GoToHomeFromOffersCommand}"
+                                      CommandParameter="{Binding .}"/>
+            </Image.GestureRecognizers>
+        </Image>
+
+        <Label Grid.Row="0"
+               Text="Return to Home"
+               FontAttributes="Bold"
+               FontFamily="Bebas"
+               FontSize="Large"
+               VerticalOptions="Start"
+               Margin="55,-25,0,0"
+               TextColor="AliceBlue">
+
+        </Label>
     </Grid>
 </ContentPage>

@@ -39,8 +39,8 @@ namespace GrantFoods.ViewModels
             SelectedRestaurant = query["restaurant"] as Restaurant;
             GetPRoductsByRestaurantsASync(SelectedRestaurant.RestaurantId);
         }
-
-        public async Task GoToProductsFromRestaurant(Product product)
+        [RelayCommand]
+        public async Task GoToProductsFromRestaurantAsync(Product product)
         {
         {
             if (product == null)
@@ -50,6 +50,11 @@ namespace GrantFoods.ViewModels
             {"product", product }
         });
         }
+        }
+        [RelayCommand]
+        private async Task ReturnHomeFromRestaurantsAsync()
+        {
+            await Shell.Current.GoToAsync(nameof(HomeView), true);
         }
     }
 }

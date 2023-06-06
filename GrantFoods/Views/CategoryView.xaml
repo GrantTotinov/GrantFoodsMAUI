@@ -7,7 +7,9 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
              x:Class="GrantFoods.Views.CategoryView"
-             Title="CategoryView">
+             Title="CategoryView"
+             x:Name="CategoryPage"
+             >
 
     <ContentPage.Background>
         <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -17,11 +19,11 @@
     </ContentPage.Background>
 
  <!-- Main grid -->
-        <Grid RowDefinitions="Auto,Auto,Auto"
-              Margin="10,45,10,0"
-              IgnoreSafeArea="{OnPlatform Android=False, iOS=True}">
-
-        
+    <Grid RowDefinitions="Auto,Auto,Auto"
+              Margin="10,0,10,0"
+              IgnoreSafeArea="{OnPlatform Android=False, iOS=True}"
+              Padding="0,45,0,0">
+       
         <!-- Poster Grid -->
         <Border Grid.Row="0"
                 StrokeShape="RoundRectangle 40,40,40,40"
@@ -39,8 +41,12 @@
                        TextColor="AliceBlue"
                        FontSize="80"
                        FontFamily="Bebas"/>
+
             </Grid>
         </Border>
+
+
+
         <!-- Restaurants  -->
         <CarouselView  Grid.Row="1"
                        ItemsSource="{Binding RestaurantsByCategory}"
@@ -50,8 +56,8 @@
             <CarouselView.ItemTemplate>
                 <DataTemplate x:DataType="models:Restaurant">
                     <Grid>
-                       
-                        
+
+
                         <Border StrokeShape="RoundRectangle 25,25,25,25">
                             <Image Source="{Binding RestaurantImg}"/>
 
@@ -87,7 +93,7 @@
                 </DataTemplate>
             </CarouselView.ItemTemplate>
         </CarouselView>
-            
+
         <!-- products  -->
 
 
@@ -196,23 +202,22 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </Border>
-        <Border Margin="0,-40,0,0"
+
+
+
+        <Image Source="backarrow"
+                   Margin="0,-40,0,0"
                Grid.Row="0"
                VerticalOptions="Start"
                HeightRequest="50"
                WidthRequest="50"
-               HorizontalOptions="Start">
-            <Image Source="backarrow">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:CategoryViewModel}}, Path=RerurnHomeFromCategoryCommand}"
-                                      CommandParameter="{Binding .}"/>
-                </Image.GestureRecognizers>
-        </Image>
-            <Border.GestureRecognizers>
+               HorizontalOptions="Start"
+                x:DataType="viewmodel:CategoryViewModel">
+            <Image.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:CategoryViewModel}}, Path=RerurnHomeFromCategoryCommand}"
                                       CommandParameter="{Binding .}"/>
-            </Border.GestureRecognizers>
-        </Border>
+            </Image.GestureRecognizers>
+        </Image>
 
         <Label Grid.Row="0"
                Text="Return to Home"
@@ -225,8 +230,4 @@
 
         </Label>
     </Grid>
-
-    
-
-    
 </ContentPage>

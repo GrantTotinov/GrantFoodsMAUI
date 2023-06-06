@@ -18,7 +18,8 @@
     <!--MAIN GRID -->
     <Grid RowDefinitions="auto, *, *"
           IgnoreSafeArea="{OnPlatform Android=False, iOS=True}"
-          Margin="10,45,10,0">
+          Margin="10,0,10,0"
+          Padding="0,45,0,0">
 
         <!--Products Cartt -->
         <Border Grid.Row="0"
@@ -186,7 +187,9 @@
                 FontAttributes="Bold"
                 FontFamily="Bebas"
                 FontSize="50"
-                Margin="0,0,0,30"/>
+                Margin="0,0,0,30"
+                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:CartViewModel}}, Path=PlaceOrderCommand}"
+                CommandParameter="{Binding .}"/>
 
         <Image Margin="0,-40,0,0"
                Grid.Row="0"

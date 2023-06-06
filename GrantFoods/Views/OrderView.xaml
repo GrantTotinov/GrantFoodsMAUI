@@ -5,6 +5,7 @@
              xmlns:viemodel="clr-namespace:GrantFoods.ViewModels"
              xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
              xmlns:model="clr-namespace:GrantFoods.Models"
+             xmlns:skiasharp="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
              Title="OrderView">
     <ContentPage.Background>
         <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -12,4 +13,73 @@
             <GradientStop Color="red" Offset="1.0"/>
         </LinearGradientBrush>
     </ContentPage.Background>
+
+    <VerticalStackLayout Margin="10,45,10,10">
+        <skiasharp:SKLottieView Source="order.json"
+                                HeightRequest="250"
+                                RepeatCount="-1"/>
+        <Label Text="Congratiulations"
+               
+               FontFamily="Bebas"
+               FontSize="Title"
+               TextColor="Black"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               Margin="0,50,0,0"/>
+        
+        <Label Text="{Binding UserName}"
+               FontAttributes="Bold"
+               FontFamily="Bebas"
+               FontSize="Title"
+               TextColor="AliceBlue"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               Margin="0,0,0,20"
+               />
+        
+        <Label Text="Thank You for your order!"
+               FontAttributes="Bold"
+               TextColor="black"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               FontSize="Medium"/>
+        
+        <Label Text="Here is your auto generated order ID!"
+               FontAttributes="Bold"
+               TextColor="black"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               FontSize="Medium"/>
+
+        <Border StrokeShape="RoundRectangle 25,25,25,25"
+                HeightRequest="50"
+                BackgroundColor="Purple">
+
+            <Label Text="{Binding OrderIdProperty}"
+               FontAttributes="Bold"
+               FontFamily="Bebas"
+               FontSize="20"
+               TextColor="AliceBlue"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"/>
+        </Border>
+
+        <Label Text="You can track your order with the ID!"
+               FontAttributes="Bold"
+               TextColor="black"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"/>
+
+        <Button Text="Retuen to home"
+                FontFamily="Bebas"
+                FontAttributes="Bold"
+                FontSize="Title"
+                CornerRadius="15"
+                WidthRequest="200"
+                BackgroundColor="Black"
+                Margin="0,90,0,0"
+            Command="{Binding Source={RelativeSource AncestorType={Type viemodel:CartViewModel}}, Path=ReturnToHomeFromCart}"
+                CommandParameter="{Binding .}"/>
+
+    </VerticalStackLayout>
 </ContentPage>

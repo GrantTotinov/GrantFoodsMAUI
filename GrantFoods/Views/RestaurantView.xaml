@@ -16,7 +16,8 @@
     <!--MAIN GRID -->
     <Grid RowDefinitions="250, *"
           IgnoreSafeArea="{OnPlatform Android=False, iOS=True}"
-          Margin="10,45,10,0">
+          Margin="10,0,10,0"
+          Padding="0,45,0,0">
 
         <Border StrokeShape="RoundRectangle 40,40,40,40"
                 StrokeThickness="0"
@@ -120,7 +121,8 @@
                                 BackgroundColor="Black">
 
                             <Border.GestureRecognizers>
-                                <TapGestureRecognizer />
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:RestaurantDetailsViewModel}}, Path=GoToProductsFromRestaurantCommand}"
+                                                      CommandParameter="{Binding .}"/>
                             </Border.GestureRecognizers>
                             <Grid RowDefinitions="Auto,Auto,Auto"
                           ColumnDefinitions="Auto,Auto">
@@ -214,7 +216,8 @@
                WidthRequest="50"
                HorizontalOptions="Start">
             <Image.GestureRecognizers>
-                <TapGestureRecognizer/>
+                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:RestaurantDetailsViewModel}}, Path=ReturnHomeFromRestaurantCommand}"
+                                      CommandParameter="{Binding .}"/>
             </Image.GestureRecognizers>
         </Image>
 
