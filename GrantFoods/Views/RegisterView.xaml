@@ -9,6 +9,13 @@
              Shell.TabBarIsVisible="False"
              x:DataType="viewmodel:UserViewModel">
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <toolkit:InvertedBoolConverter x:Key="invertBoolConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    
     <ContentPage.Background>
         <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
             <GradientStop Color="Purple" Offset="0.0" />
@@ -54,6 +61,7 @@
                     <Entry.Behaviors>
                         <toolkit:TextValidationBehavior
                             Flags="ValidateOnValueChanged,ValidateOnAttaching"
+                            MinimumLength="6"
                             IsValid="{Binding IsUsernameValid}"/>
                     </Entry.Behaviors>
                 </Entry>
@@ -94,13 +102,15 @@
                     <Entry.Behaviors>
                         <toolkit:TextValidationBehavior
                             Flags="ValidateOnValueChanged,ValidateOnAttaching"
+                             MinimumLength="6"
                             IsValid="{Binding IsPasswordValid}"/>
                     </Entry.Behaviors>
                 </Entry>
             </Frame>
 
         </StackLayout>
-
+        <Label Text="Password must have at least 6 characters!"
+                   IsVisible="{Binding IsPasswordValid, Converter={StaticResource invertBoolConverter}}"/>
         <StackLayout Orientation="Horizontal">
 
             <Frame HasShadow="True" 
@@ -137,13 +147,14 @@
 
         </StackLayout>
 
-        <Label Text="Password must have at least 6 characters!"
-                   IsVisible="{Binding IsPasswordValid, Converter={StaticResource invertBoolConverter}}"/>
+        <Label Text="Email must have valid format!"
+                   IsVisible="{Binding IsEmailValid, Converter={StaticResource invertBoolConverter}}"/>
         <Button
             Text="Sign In"
-            Command="{Binding RegisterCommand}"/>
+            Command="{Binding RegisterCommand}"
+            IsEnabled="{Binding IsEmailValid}"/>
 
-        <Button Text="Already have an account?"
+        <Button Text="Already have an account?" 
                 WidthRequest="200"
                 BackgroundColor="Transparent"
                 Command="{Binding GoToLoginFromRegisterCommand}"/>

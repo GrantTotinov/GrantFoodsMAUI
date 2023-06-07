@@ -31,7 +31,7 @@ namespace GrantFoods.ViewModels
            
             databaseService = _databaseService;
             TotalCost = 0;
-            client = new FirebaseClient("https://grantfoods6-default-rtdb.europe-west1.firebasedatabase.app/");
+            client = new FirebaseClient("https://grantfoodsnew-default-rtdb.europe-west1.firebasedatabase.app/");
             _ = LoadCartItemsAsync();
             
         }

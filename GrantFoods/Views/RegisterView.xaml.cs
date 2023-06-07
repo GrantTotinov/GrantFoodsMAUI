@@ -1,10 +1,17 @@
+using System.Runtime.CompilerServices;
+
 namespace GrantFoods.Views;
 
 public partial class RegisterView : ContentPage
 {
-	public RegisterView(UserViewModel userViewModel)
+	UserViewModel userViewModel;
+	public RegisterView(UserViewModel _userViewModel)
 	{
 		InitializeComponent();
+		userViewModel = _userViewModel;
 		BindingContext = userViewModel;
 	}
+
+    
+    
 }
