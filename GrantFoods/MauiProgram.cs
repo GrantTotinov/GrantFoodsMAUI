@@ -80,6 +80,8 @@ public static class MauiProgram
         builder.Services.AddTransient<ProductDetailsViewModel>();
         builder.Services.AddTransient<CartViewModel>();
         builder.Services.AddTransient<RestaurantDetailsViewModel>();
+        builder.Services.AddTransient<LogoutViewModel>();
+
 
 
 

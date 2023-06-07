@@ -41,10 +41,6 @@ namespace GrantFoods.ViewModels
             GetTopRatedItems();
             GetTopRatedRestaurants();
             GetOffers();
-            //ReturnCount();
-            
-            
-
         }
 
         public async Task<int> ReturnCount()
@@ -53,9 +49,6 @@ namespace GrantFoods.ViewModels
             UserCartItemCount = await task;
             return UserCartItemCount;
         }
-
-        
-        
 
         private async void GetOffers()
         {

@@ -39,7 +39,8 @@
             <SearchBar Placeholder="Search Food"
                            BackgroundColor="white"
                            TextColor="DarkOrange"
-                           FontAttributes="Bold">
+                           FontAttributes="Bold"
+                       TextChanged="SearchBar_TextChanged">
 
             </SearchBar>
         </Border>
@@ -65,7 +66,7 @@
                         ItemsLayout="VerticalList"
                         HorizontalScrollBarVisibility="Never"
                         Margin="10"
-                           >
+                        x:Name="OffersCollectionView">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Border Padding="5"

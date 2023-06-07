@@ -148,6 +148,7 @@
 	  <None Remove="Resources\Images\verdilogo.png" />
 	  <None Remove="Resources\Raw\foodorderanimation.json" />
 	  <None Remove="Resources\Raw\loginanimation.json" />
+	  <None Remove="Resources\Raw\logoutanimation.json" />
 	  <None Remove="Resources\Raw\newoffersanimation.json" />
 	  <None Remove="Resources\Raw\order.json" />
 	  <None Remove="Resources\Raw\orderanimation.json" />

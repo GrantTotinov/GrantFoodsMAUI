@@ -49,12 +49,17 @@ public partial class HomeView : ContentPage
         };
     }
 
-    protected override  void OnAppearing()
+    protected override void OnAppearing()
     {
         base.OnAppearing();
         _ = homeViewModel.ReturnCount();
     }
 
-
-
+    private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        if (string.IsNullOrWhiteSpace(e.NewTextValue))
+            Products.ItemsSource = homeViewModel.TopRatedItems;
+        else
+            Products.ItemsSource = homeViewModel.TopRatedItems.Where(i => i.ProductName.ToLower().Contains(e.NewTextValue.ToLower()));
+    }
 }

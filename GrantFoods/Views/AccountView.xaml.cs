@@ -2,8 +2,9 @@ namespace GrantFoods.Views;
 
 public partial class AccountView : ContentPage
 {
-	public AccountView()
+	public AccountView(LogoutViewModel logoutViewModel)
 	{
 		InitializeComponent();
+		BindingContext = logoutViewModel;
 	}
 }

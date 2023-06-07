@@ -4,6 +4,7 @@
              xmlns:template="clr-namespace:GrantFoods.Views.Templates"
              x:Class="GrantFoods.Views.LandingView"
              Shell.NavBarIsVisible="False"
+             Shell.TabBarIsVisible="False"
              Title="LandingView">
 
     <ContentPage.Resources>

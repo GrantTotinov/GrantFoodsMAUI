@@ -1,12 +1,38 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:viewmodel="clr-namespace:GrantFoods.ViewModels"
+             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
              x:Class="GrantFoods.Views.AccountView"
              Title="AccountView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .AccountView"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="Purple" Offset="0.0" />
+            <GradientStop Color="red" Offset="1.0"/>
+        </LinearGradientBrush>
+        
+    </ContentPage.Background>
+    <Grid RowDefinitions="*,*">
+        <Label Text="Accout Managment"
+               FontAttributes="Bold"
+               FontFamily="Bebas"
+               FontSize="50"
+               TextColor="AliceBlue"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"/>
+
+        <Button Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:LogoutViewModel}}, Path=GoToLogoutViewCommand}"
+                CommandParameter="{Binding .}"
+                Text="Log Out"
+                FontAttributes="Bold"
+                FontFamily="Bebas"
+                FontSize="Title"
+                BackgroundColor="Black"
+                CornerRadius="25"
+                WidthRequest="200"
+                HeightRequest="50"
+                Grid.Row="1"/>
+    </Grid>
 </ContentPage>

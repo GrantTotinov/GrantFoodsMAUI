@@ -6,6 +6,7 @@
              Shell.NavBarIsVisible="False"
              xmlns:viewmodel="clr-namespace:GrantFoods.ViewModels"
              x:Class="GrantFoods.Views.LoginView"
+             Shell.TabBarIsVisible="False"
              Title="LoginView"
              x:DataType="viewmodel:UserViewModel">
 

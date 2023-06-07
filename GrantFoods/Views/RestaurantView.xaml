@@ -216,7 +216,7 @@
                WidthRequest="50"
                HorizontalOptions="Start">
             <Image.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:RestaurantDetailsViewModel}}, Path=ReturnHomeFromRestaurantCommand}"
+                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:RestaurantDetailsViewModel}}, Path=ReturnHomeFromRestaurantsCommand}"
                                       CommandParameter="{Binding .}"/>
             </Image.GestureRecognizers>
         </Image>

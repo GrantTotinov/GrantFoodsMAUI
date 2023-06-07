@@ -8,42 +8,43 @@
     x:Name="MyAppShell"
     Shell.NavBarIsVisible="False"
     Shell.PresentationMode="Animated">
- 
 
-    <ShellContent x:Name="MyLandingPage"
+    <ShellContent Shell.TabBarBackgroundColor="red"
+                  Shell.TabBarForegroundColor="Blue"
+                  Shell.TabBarUnselectedColor="Black"/>
+
+    <ShellContent
+        x:Name="MyLandingPage"
         ContentTemplate="{DataTemplate view:LandingView}"/>
 
     <ShellContent
         ContentTemplate="{DataTemplate view:LoginView}"/>
 
-    <TabBar Route="TabBar">
+    <TabBar Route="TabBar"
+            Shell.TabBarBackgroundColor="Purple"
+            Shell.TabBarUnselectedColor="White">
+
         <Tab Icon="offers.png">
             <ShellContent ContentTemplate="{DataTemplate view:OffersView}"/>
         </Tab>
-        
-        
-        
+
+
+
         <Tab Icon="home.png"
-             x:Name="MyHomePage"
-             Route="HomeView">
-            <ShellContent ContentTemplate="{DataTemplate view:HomeView}"/>
+             x:Name="HomeTab">
+            <ShellContent ContentTemplate="{DataTemplate view:HomeView}"
+                          x:Name="MyHomePage"
+                          />
         </Tab>
 
-        
-        
-        <Tab  
-            Icon="account.png"
-              Route="AccountView">
-            <ShellContent ContentTemplate="{DataTemplate view:AccountView}"/>
+
+
+        <Tab Icon="account.png"
+             x:Name="AccountTab"
+               >
+            <ShellContent ContentTemplate="{DataTemplate view:AccountView}"
+                          
+                          x:Name="MyAccounrPage"/>
         </Tab>
     </TabBar>
-
-    <ShellContent x:Name="MyCategoryPage"
-        ContentTemplate="{DataTemplate view:CategoryView}"/>
-
-    <ShellContent  x:Name="MyRestaurantPage"
-        ContentTemplate="{DataTemplate view:RestaurantView}"/>
-
-    
-
 </Shell>

@@ -1,10 +1,11 @@
-﻿namespace GrantFoods;
+﻿
+namespace GrantFoods;
 
 public partial class AppShell : Shell
 {
-	public AppShell()
-	{
-		InitializeComponent();
+    public AppShell()
+    {
+        InitializeComponent();
 
         Routing.RegisterRoute(nameof(LandingView), typeof(LandingView));
         Routing.RegisterRoute(nameof(LoginView), typeof(LoginView));
@@ -25,11 +26,28 @@ public partial class AppShell : Shell
         string username = Preferences.Get("Username", String.Empty);
         if (String.IsNullOrEmpty(username))
         {
-           MyAppShell.CurrentItem = MyLandingPage;
+            MyAppShell.CurrentItem = MyLandingPage;
         }
         else
         {
-           MyAppShell.CurrentItem = MyHomePage;
+            MyAppShell.CurrentItem = MyHomePage;
         }
     }
+
+    protected override void OnNavigating(ShellNavigatingEventArgs args)
+    {
+        base.OnNavigating(args);
+        if (args.Source == ShellNavigationSource.ShellSectionChanged)
+        {
+            var navigation = Shell.Current.Navigation;
+            var pages = navigation.NavigationStack;
+            for (var i = pages.Count - 1; i >= 1; i--)
+            {
+                navigation.RemovePage(pages[i]);
+            }
+        }
+    }
+
+
+
 }

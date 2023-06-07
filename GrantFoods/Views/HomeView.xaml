@@ -54,7 +54,8 @@
                 <SearchBar Placeholder="Search Food"
                            BackgroundColor="white"
                            TextColor="DarkOrange"
-                           FontAttributes="Bold">
+                           FontAttributes="Bold"
+                           TextChanged="SearchBar_TextChanged">
 
                 </SearchBar>
             </Border>
